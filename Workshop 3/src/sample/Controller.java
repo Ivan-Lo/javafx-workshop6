@@ -5,6 +5,7 @@ import java.sql.*;
 import java.util.ResourceBundle;
 import java.util.Vector;
 
+import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
@@ -12,6 +13,8 @@ import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.HBox;
+
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
 
@@ -20,6 +23,11 @@ public class Controller {
     private Connection conn;
     private Statement stmt;
     private ResultSet rs;
+    final ObservableList options = FXCollections.observableArrayList();
+
+
+
+
 
 
     @FXML
@@ -68,8 +76,20 @@ public class Controller {
 
     }
 
+    public void fillComboBox() throws SQLException {
+
+        String query = "select AgentId from Agents ";
+        PreparedStatement pst = conn.prepareStatement(query);
+        rs = pst.executeQuery();
+
+        while(rs.next()) {
+            options.add(rs.getString("AgentId"));
+        }
+        pst.close();
+        rs.close();
 
 
+    }
 
 
     private void connectDB() {
@@ -87,23 +107,28 @@ public class Controller {
         }
     }
 
-    private Vector getAgentIDs() {
-        // TODO Auto-generated method stub
-        Vector<String> agents = new Vector<String>();
-        try {
-            rs = stmt.executeQuery("select agentid from agents");
-            while (rs.next())
-            {
-                agents.add(rs.getString("agentid"));
-            }
-        } catch (SQLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        }
-        return agents;
-    }
+//    private Vector getAgentIDs() {
+//        // TODO Auto-generated method stub
+//        Vector<String> agents = new Vector<String>();
+//        try {
+//            rs = stmt.executeQuery("select agentid from agents");
+//            while (rs.next())
+//            {
+//                agents.add(rs.getString("agentid"));
+//            }
+//        } catch (SQLException e) {
+//            // TODO Auto-generated catch block
+//            e.printStackTrace();
+//        }
+//        return agents;
+   // }
     @FXML
-    void initialize() {
+    void initialize() throws SQLException {
+        cmbTable = new ComboBox<String>(options);
+        cmbTable.setMaxHeight(30);
+        connectDB();
+        fillComboBox();
+
 
 
 
