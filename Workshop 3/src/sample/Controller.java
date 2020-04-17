@@ -1,19 +1,28 @@
 package sample;
 
+import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ResourceBundle;
 import java.util.Vector;
+import java.util.logging.Level;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.event.ActionEvent;
+import javafx.event.EventHandler;
 import javafx.fxml.FXML;
+import javafx.fxml.FXMLLoader;
+import javafx.scene.Node;
+import javafx.scene.Parent;
+import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.HBox;
+import javafx.stage.Stage;
 
 import javax.swing.ComboBoxModel;
 import javax.swing.JComboBox;
@@ -62,9 +71,21 @@ public class Controller {
     }
 
     @FXML
-    void newClicked(ActionEvent event) {
-
+    void newClicked(MouseEvent event) throws IOException {
+        FXMLLoader fxmlLoader = new FXMLLoader();
+        fxmlLoader.setLocation(getClass().getResource("addRows.fxml"));
+        /*
+         * if "fx:controller" is not set in fxml
+         * fxmlLoader.setController(NewWindowController);
+         */
+        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
+        Stage stage = new Stage();
+        stage.setTitle("New Window");
+        stage.setScene(scene);
+        stage.show();
     }
+
+
 
     @FXML
     void rowSelected(MouseEvent event) {
@@ -75,6 +96,7 @@ public class Controller {
     void tableSelected(MouseEvent event) {
 
     }
+
 
     public void fillComboBox() throws SQLException {
 
@@ -127,7 +149,7 @@ public class Controller {
         cmbTable = new ComboBox<String>(options);
         cmbTable.setMaxHeight(30);
         connectDB();
-        fillComboBox();
+        //fillComboBox();
 
 
 

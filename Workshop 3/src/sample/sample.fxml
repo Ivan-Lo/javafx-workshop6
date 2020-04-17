@@ -23,6 +23,6 @@
       </Label>
       <Button fx:id="btnEdit" layoutX="324.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#editClicked" prefHeight="42.0" prefWidth="97.0" text="Edit" />
       <Button fx:id="btnExit" layoutX="448.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#exitClicked" prefHeight="42.0" prefWidth="97.0" text="Exit" />
-      <Button fx:id="btnNew" layoutX="200.0" layoutY="328.0" mnemonicParsing="false" onAction="#newClicked" onMouseClicked="#editClicked" prefHeight="42.0" prefWidth="97.0" text="New" />
+      <Button fx:id="btnNew" layoutX="200.0" layoutY="328.0" mnemonicParsing="false" onMouseClicked="#newClicked" prefHeight="42.0" prefWidth="97.0" text="New" />
    </children>
 </AnchorPane>
