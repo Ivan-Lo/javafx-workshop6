@@ -1,22 +1,17 @@
 package sample;
 
-import java.io.IOException;
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
 import javafx.fxml.FXML;
-import javafx.fxml.FXMLLoader;
-import javafx.scene.Scene;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
 import javafx.scene.input.MouseEvent;
-import javafx.stage.Stage;
 
 public class Controller {
 
@@ -40,16 +35,13 @@ public class Controller {
     private ListView<?> lvTable;
 
     @FXML
-    private ComboBox<Integer> cmbTable;
+    private ComboBox<String> cmbTable;
 
     @FXML
     private Button btnEdit;
 
     @FXML
     private Button btnExit;
-
-    @FXML
-    private Button btnNew;
 
     @FXML
     void editClicked(MouseEvent event) {
@@ -62,23 +54,6 @@ public class Controller {
     }
 
     @FXML
-    void newClicked(MouseEvent event) throws IOException {
-        FXMLLoader fxmlLoader = new FXMLLoader();
-        fxmlLoader.setLocation(getClass().getResource("addRows.fxml"));
-        /*
-         * if "fx:controller" is not set in fxml
-         * fxmlLoader.setController(NewWindowController);
-         */
-        Scene scene = new Scene(fxmlLoader.load(), 600, 400);
-        Stage stage = new Stage();
-        stage.setTitle("New Window");
-        stage.setScene(scene);
-        stage.show();
-    }
-
-
-
-    @FXML
     void rowSelected(MouseEvent event) {
 
     }
@@ -88,11 +63,44 @@ public class Controller {
 
     }
 
+    private ArrayList<String> getAllTables() throws SQLException {
+        ArrayList<String> listOfTables = new ArrayList<>();
 
-    public ArrayList<Integer> fillComboBox() throws SQLException {
+        PreparedStatement selectIDs = null;
+
+        ResultSet rs = null;
+            DatabaseMetaData meta = conn.getMetaData();
+            rs = meta.getTables(null, null, null, new String[] {
+                    "TABLE"
+            });
+            int count = 0;
+            System.out.println("All table names are in test database:");
+            while (rs.next()) {
+                String tblName = rs.getString("TABLE_NAME");
+                listOfTables.add(rs.getString("TABLE_NAME"));
+
+                System.out.println(tblName);
+                count++;
+            }
+        //selectIDs.close();
+        return listOfTables;
+
+
+    }
+
+
+
+
+
+
+
+
+
+/*    public ArrayList<Integer> fillComboBox() throws SQLException {
 
         ArrayList<Integer> AgentIDs = new ArrayList<>();
-        String selectQuery = "SELECT AgentId from agents";
+        String selectQuery = "SELECT AgentId from agents"; //select * from sysobjects where xtype = 'U'
+
         PreparedStatement selectIDs = null;
         try {
             selectIDs = conn.prepareStatement(selectQuery);
@@ -107,8 +115,7 @@ public class Controller {
             selectIDs.close();
         }
         return AgentIDs;
-    }
-
+    }*/
 
     private void connectDB() {
         // TODO Auto-generated method stub
@@ -125,35 +132,16 @@ public class Controller {
         }
     }
 
-//    private Vector getAgentIDs() {
-//        // TODO Auto-generated method stub
-//        Vector<String> agents = new Vector<String>();
-//        try {
-//            rs = stmt.executeQuery("select agentid from agents");
-//            while (rs.next())
-//            {
-//                agents.add(rs.getString("agentid"));
-//            }
-//        } catch (SQLException e) {
-//            // TODO Auto-generated catch block
-//            e.printStackTrace();
-//        }
-//        return agents;
-   // }
     @FXML
     void initialize() throws SQLException {
         assert lvTable != null : "fx:id=\"lvTable\" was not injected: check your FXML file 'sample.fxml'.";
         assert cmbTable != null : "fx:id=\"cmbTable\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnEdit != null : "fx:id=\"btnEdit\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnExit != null : "fx:id=\"btnExit\" was not injected: check your FXML file 'sample.fxml'.";
-        assert btnNew != null : "fx:id=\"btnNew\" was not injected: check your FXML file 'sample.fxml'.";
 
-        //cmbTable = new ComboBox<String>(options);
-       // cmbTable.setMaxHeight(30);
         connectDB();
-        cmbTable.getItems().addAll(fillComboBox());
 
-
+        cmbTable.getItems().addAll(getAllTables());
 
     }
 }
