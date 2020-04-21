@@ -1,5 +1,6 @@
 package sample;
 
+
 import java.net.URL;
 import java.sql.*;
 import java.util.ArrayList;
@@ -11,6 +12,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.ComboBox;
 import javafx.scene.control.ListView;
+import javafx.scene.control.TextField;
 import javafx.scene.input.MouseEvent;
 
 public class Controller {
@@ -42,6 +44,95 @@ public class Controller {
 
     @FXML
     private Button btnExit;
+    @FXML
+    private TextField tfAgentId;
+
+    @FXML
+    private TextField tfAgentFirstName;
+
+    @FXML
+    private TextField tfAgentMiddileInitial;
+
+    @FXML
+    private TextField tfAgentLastName;
+
+    @FXML
+    private TextField tfAgentPhone;
+
+    @FXML
+    private TextField tfAgentEmail;
+
+    @FXML
+    private TextField tfAgentPosition;
+
+    @FXML
+    private TextField tfAgencyID;
+
+    @FXML
+    private Button btnAddAgent;
+
+    @FXML
+    private Button btnExitAddAgent;
+
+    @FXML
+    private Button btnAddCustomer;
+
+    @FXML
+    private Button btnExitAddCustomer;
+
+    @FXML
+    private TextField tfCustomerId;
+
+    @FXML
+    private TextField tfCustFirstName;
+
+    @FXML
+    private TextField tfCustLastName;
+
+    @FXML
+    private TextField tfCustAddress;
+
+    @FXML
+    private TextField tfCustCity;
+
+    @FXML
+    private TextField tfCustProvince;
+
+    @FXML
+    private TextField tfCustPostalCode;
+
+    @FXML
+    private TextField tfCustCountry;
+
+    @FXML
+    private TextField tfCustHomePhone;
+
+    @FXML
+    private TextField tfCustBusinessPhone;
+
+    @FXML
+    private TextField tfCustEmail;
+
+    @FXML
+    private TextField tfCustAgentId;
+
+    @FXML
+    void addAgentClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void addCustomerClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void addCustomerExitClicked(MouseEvent event) {
+        System.exit(0);
+
+
+    }
+
 
     @FXML
     void editClicked(MouseEvent event) {
@@ -50,8 +141,16 @@ public class Controller {
 
     @FXML
     void exitClicked(MouseEvent event) {
-
+        System.exit(0);
     }
+
+        @FXML
+        void newAgentExitClicked(MouseEvent event) {
+            System.exit(0);
+
+
+        }
+
 
     @FXML
     void rowSelected(MouseEvent event) {
@@ -66,7 +165,6 @@ public class Controller {
     private ArrayList<String> getAllTables() throws SQLException {
         ArrayList<String> listOfTables = new ArrayList<>();
 
-        PreparedStatement selectIDs = null;
 
         ResultSet rs = null;
             DatabaseMetaData meta = conn.getMetaData();
@@ -82,40 +180,10 @@ public class Controller {
                 System.out.println(tblName);
                 count++;
             }
-        //selectIDs.close();
         return listOfTables;
 
 
     }
-
-
-
-
-
-
-
-
-
-/*    public ArrayList<Integer> fillComboBox() throws SQLException {
-
-        ArrayList<Integer> AgentIDs = new ArrayList<>();
-        String selectQuery = "SELECT AgentId from agents"; //select * from sysobjects where xtype = 'U'
-
-        PreparedStatement selectIDs = null;
-        try {
-            selectIDs = conn.prepareStatement(selectQuery);
-            ResultSet rset = selectIDs.executeQuery(selectQuery);
-            while (rset.next()) {
-                AgentIDs.add(rset.getInt("AgentId"));
-            }
-            System.out.println("Agent IDs loaded to the ComboBox");
-        } catch (SQLException e) {
-            e.printStackTrace();
-        } finally {
-            selectIDs.close();
-        }
-        return AgentIDs;
-    }*/
 
     private void connectDB() {
         // TODO Auto-generated method stub
@@ -134,10 +202,35 @@ public class Controller {
 
     @FXML
     void initialize() throws SQLException {
-        assert lvTable != null : "fx:id=\"lvTable\" was not injected: check your FXML file 'sample.fxml'.";
         assert cmbTable != null : "fx:id=\"cmbTable\" was not injected: check your FXML file 'sample.fxml'.";
+        assert lvTable != null : "fx:id=\"lvTable\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnEdit != null : "fx:id=\"btnEdit\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnExit != null : "fx:id=\"btnExit\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfAgentId != null : "fx:id=\"tfAgentId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfAgentFirstName != null : "fx:id=\"tfAgentFirstName\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfAgentMiddileInitial != null : "fx:id=\"tfAgentMiddileInitial\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfAgentLastName != null : "fx:id=\"tfAgentLastName\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfAgentPhone != null : "fx:id=\"tfAgentPhone\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfAgentEmail != null : "fx:id=\"tfAgentEmail\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfAgentPosition != null : "fx:id=\"tfAgentPosition\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfAgencyID != null : "fx:id=\"tfAgencyID\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnAddAgent != null : "fx:id=\"btnAddAgent\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnExitAddAgent != null : "fx:id=\"btnExitAddAgent\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnAddCustomer != null : "fx:id=\"btnAddCustomer\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnExitAddCustomer != null : "fx:id=\"btnExitAddCustomer\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustomerId != null : "fx:id=\"tfCustomerId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustFirstName != null : "fx:id=\"tfCustFirstName\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustLastName != null : "fx:id=\"tfCustLastName\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustAddress != null : "fx:id=\"tfCustAddress\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustCity != null : "fx:id=\"tfCustCity\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustProvince != null : "fx:id=\"tfCustProvince\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustPostalCode != null : "fx:id=\"tfCustPostalCode\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustCountry != null : "fx:id=\"tfCustCountry\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustHomePhone != null : "fx:id=\"tfCustHomePhone\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustBusinessPhone != null : "fx:id=\"tfCustBusinessPhone\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustEmail != null : "fx:id=\"tfCustEmail\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustAgentId != null : "fx:id=\"tfCustAgentId\" was not injected: check your FXML file 'sample.fxml'.";
+
 
         connectDB();
 
@@ -145,3 +238,5 @@ public class Controller {
 
     }
 }
+
+
