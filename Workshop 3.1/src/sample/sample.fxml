@@ -6,6 +6,8 @@
 <?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
+<?import javafx.scene.control.TableColumn?>
+<?import javafx.scene.control.TableView?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -32,6 +34,41 @@
                         </Label>
                         <Button fx:id="btnEdit" layoutX="237.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#editClicked" prefHeight="42.0" prefWidth="97.0" text="Edit" />
                         <Button fx:id="btnExit" layoutX="383.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#exitClicked" prefHeight="42.0" prefWidth="97.0" text="Exit" />
+                        <TabPane layoutX="54.0" layoutY="35.0" prefHeight="369.6" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="Products">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="tblProducts" layoutX="102.0" layoutY="50.0" onMouseClicked="#productsTableClicked" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="ProductId" prefWidth="75.0" text="ProductId" />
+                                              <TableColumn fx:id="ProdName" prefWidth="75.0" text="ProdName" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                            <Tab text="Agents">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 <TableView fx:id="tableview" layoutX="141.0" layoutY="79.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+                                    <columns>
+                                       <TableColumn fx:id="agentidColumn" prefWidth="62.400022864341736" text="AgentId" />
+                                       <TableColumn fx:id="firstNameColumn" prefWidth="91.9999771118164" text="AgtFirstName" />
+                                       <TableColumn fx:id="middleInitialColumn" prefWidth="97.5999755859375" text="AgtMiddleInitial" />
+                                       <TableColumn fx:id="lastNameColumn" prefWidth="99.20001220703125" text="AgtLastName" />
+                                       <TableColumn fx:id="busPhoneColumn" prefWidth="96.79998779296875" text="AgtBusPhone" />
+                                       <TableColumn fx:id="emailColumn" prefWidth="90.39999389648438" text="AgtEmail" />
+                                       <TableColumn fx:id="agtPositionColumn" prefWidth="91.2000732421875" text="AgtPosition" />
+                                       <TableColumn fx:id="agencyIdColumn" prefWidth="81.599853515625" text="AgencyId" />
+                                    </columns>
+                                 </TableView>
+                              </content>
+                            </Tab>
+                          </tabs>
+                        </TabPane>
                      </children></AnchorPane>
             </content>
           </Tab>

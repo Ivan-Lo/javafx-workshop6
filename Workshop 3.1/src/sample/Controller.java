@@ -8,11 +8,11 @@ import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
+import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.scene.control.Button;
-import javafx.scene.control.ComboBox;
-import javafx.scene.control.ListView;
-import javafx.scene.control.TextField;
+import javafx.fxml.Initializable;
+import javafx.scene.control.*;
+import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
 
 public class Controller {
@@ -22,9 +22,32 @@ public class Controller {
     private ResultSet rs;
     final ObservableList options = FXCollections.observableArrayList();
 
+    @FXML
+    private TableView<Agents> tableview;
 
+    @FXML
+    private TableColumn<Agents, Integer> agentidColumn;
 
+    @FXML
+    private TableColumn<Agents, String> firstNameColumn;
 
+    @FXML
+    private TableColumn<Agents, String> middleInitialColumn;
+
+    @FXML
+    private TableColumn<Agents, String> lastNameColumn;
+
+    @FXML
+    private TableColumn<Agents,String> busPhoneColumn;
+
+    @FXML
+    private TableColumn<Agents, String> emailColumn;
+
+    @FXML
+    private TableColumn<Agents, String> agtPositionColumn;
+
+    @FXML
+    private TableColumn<Agents, Integer> agencyIdColumn;
 
 
     @FXML
@@ -34,7 +57,21 @@ public class Controller {
     private URL location;
 
     @FXML
-    private ListView<?> lvTable;
+    private TableView<Products> tblProducts;
+
+    @FXML
+    private TableColumn<Products, Integer> colProductId;
+
+    @FXML
+    private TableColumn<Products, String> colProdName;
+
+    @FXML
+    void productsTableClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    private ListView<String> lvTable;
 
     @FXML
     private ComboBox<String> cmbTable;
@@ -144,42 +181,46 @@ public class Controller {
         System.exit(0);
     }
 
-        @FXML
-        void newAgentExitClicked(MouseEvent event) {
-            System.exit(0);
+    @FXML
+    void newAgentExitClicked(MouseEvent event) {
+        System.exit(0);
 
 
-        }
+    }
 
-
+    //THIS IS THE LISTVIEW EVENT LISTENER
     @FXML
     void rowSelected(MouseEvent event) {
 
     }
 
+    //THIS IS THE COMBOBOX EVENT LISTENER
     @FXML
     void tableSelected(MouseEvent event) {
 
     }
+
+    private ObservableList<String> items = FXCollections.observableArrayList();
+
 
     private ArrayList<String> getAllTables() throws SQLException {
         ArrayList<String> listOfTables = new ArrayList<>();
 
 
         ResultSet rs = null;
-            DatabaseMetaData meta = conn.getMetaData();
-            rs = meta.getTables(null, null, null, new String[] {
-                    "TABLE"
-            });
-            int count = 0;
-            System.out.println("All table names are in test database:");
-            while (rs.next()) {
-                String tblName = rs.getString("TABLE_NAME");
-                listOfTables.add(rs.getString("TABLE_NAME"));
+        DatabaseMetaData meta = conn.getMetaData();
+        rs = meta.getTables(null, null, null, new String[]{
+                "TABLE"
+        });
+        int count = 0;
+        System.out.println("All table names are in test database:");
+        while (rs.next()) {
+            String tblName = rs.getString("TABLE_NAME");
+            listOfTables.add(rs.getString("TABLE_NAME"));
 
-                System.out.println(tblName);
-                count++;
-            }
+            System.out.println(tblName);
+            count++;
+        }
         return listOfTables;
 
 
@@ -200,8 +241,22 @@ public class Controller {
         }
     }
 
+
+
+    private ObservableList<Agents>data;
+    private DbConnection dc;
     @FXML
     void initialize() throws SQLException {
+
+        assert tableview != null : "fx:id=\"tableview\" was not injected: check your FXML file 'sample.fxml'.";
+        assert agentidColumn != null : "fx:id=\"agentidColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert firstNameColumn != null : "fx:id=\"firstNameColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert middleInitialColumn != null : "fx:id=\"middleInitialColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert lastNameColumn != null : "fx:id=\"lastNameColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert busPhoneColumn != null : "fx:id=\"busPhoneColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert emailColumn != null : "fx:id=\"emailColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert agtPositionColumn != null : "fx:id=\"agtPositionColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert agencyIdColumn != null : "fx:id=\"agencyIdColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert cmbTable != null : "fx:id=\"cmbTable\" was not injected: check your FXML file 'sample.fxml'.";
         assert lvTable != null : "fx:id=\"lvTable\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnEdit != null : "fx:id=\"btnEdit\" was not injected: check your FXML file 'sample.fxml'.";
@@ -231,12 +286,34 @@ public class Controller {
         assert tfCustEmail != null : "fx:id=\"tfCustEmail\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfCustAgentId != null : "fx:id=\"tfCustAgentId\" was not injected: check your FXML file 'sample.fxml'.";
 
+        data= FXCollections.observableArrayList();
 
-        connectDB();
+        agentidColumn.setCellValueFactory(new PropertyValueFactory<>("AgentId"));
+        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("AgtFirstName"));
+        middleInitialColumn.setCellValueFactory(new PropertyValueFactory<>("AgtMiddleInitial"));
+        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("AgtLastName"));
+        busPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("AgtBusPhone"));
+        emailColumn.setCellValueFactory(new PropertyValueFactory<>("AgtEmail"));
+        agtPositionColumn.setCellValueFactory(new PropertyValueFactory<>("AgtPosition"));
+        agencyIdColumn.setCellValueFactory(new PropertyValueFactory<>("AgencyId"));
+        try{
 
-        cmbTable.getItems().addAll(getAllTables());
+            //Connection conn = dc.Connect();
+            Connection conn = DbConnection.getConnection();
+
+            //Execute query and store result in a resultset
+            ResultSet rs=conn.createStatement().executeQuery("SELECT*FROM Agents");
+            while (((ResultSet) rs).next()) {
+                //get string from db, whichever way
+                data.add(new Agents(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),
+                        rs.getString(6),rs.getString(7),rs.getInt(8)));
+                tableview.setItems(data);
+            }
+        } catch(SQLException ex){
+            System.err.println("Error" + ex);
+        }
+
 
     }
-}
-
+    }
 
