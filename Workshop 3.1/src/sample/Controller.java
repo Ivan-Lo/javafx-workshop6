@@ -297,18 +297,19 @@ public class Controller {
         agtPositionColumn.setCellValueFactory(new PropertyValueFactory<>("AgtPosition"));
         agencyIdColumn.setCellValueFactory(new PropertyValueFactory<>("AgencyId"));
         try{
+            String query = "select * from Agents";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
 
-            //Connection conn = dc.Connect();
-            Connection conn = DbConnection.getConnection();
+            PreparedStatement pst = conn.prepareStatement(query);
+            rs = pst.executeQuery();
 
-            //Execute query and store result in a resultset
-            ResultSet rs=conn.createStatement().executeQuery("SELECT*FROM Agents");
-            while (((ResultSet) rs).next()) {
-                //get string from db, whichever way
+            while (rs.next()) {
                 data.add(new Agents(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),
                         rs.getString(6),rs.getString(7),rs.getInt(8)));
                 tableview.setItems(data);
             }
+            pst.close();
+            rs.close();
         } catch(SQLException ex){
             System.err.println("Error" + ex);
         }
