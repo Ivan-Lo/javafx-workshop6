@@ -50,7 +50,7 @@ public class Controller {
     private TableColumn<Booking, Integer> colPackageId;
 
     @FXML
-    private TableView<Agent> tableview;
+    private TableView<Agent> tblAgents;
 
     @FXML
     private TableColumn<Agent, Integer> agentidColumn;
@@ -165,6 +165,8 @@ public class Controller {
     @FXML
     void addAgentClicked(MouseEvent event) {
 
+        
+
     }
 
     @FXML
@@ -238,7 +240,7 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         while (rs.next()) {
             data.add(new Agent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
                     rs.getString(6), rs.getString(7), rs.getInt(8)));
-            tableview.setItems(data);
+            tblAgents.setItems(data);
         }
         pst.close();
         rs.close();
@@ -293,7 +295,7 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
     @FXML
     void initialize() throws SQLException {
 
-        assert tableview != null : "fx:id=\"tableview\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tblAgents != null : "fx:id=\"tableview\" was not injected: check your FXML file 'sample.fxml'.";
         assert agentidColumn != null : "fx:id=\"agentidColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert firstNameColumn != null : "fx:id=\"firstNameColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert middleInitialColumn != null : "fx:id=\"middleInitialColumn\" was not injected: check your FXML file 'sample.fxml'.";
