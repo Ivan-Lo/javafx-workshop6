@@ -163,6 +163,45 @@ public class Controller {
     private TextField tfCustAgentId;
 
     @FXML
+    private TableView<Customer> ctableview;
+
+    @FXML
+    private TableColumn<Customer, Integer> customeridColumn;
+
+    @FXML
+    private TableColumn<Customer, String> cfirstNameColumn;
+
+    @FXML
+    private TableColumn<Customer, String> clastNameColumn;
+
+    @FXML
+    private TableColumn<Customer, String> addressColumn;
+
+    @FXML
+    private TableColumn<Customer,String> cityColumn;
+
+    @FXML
+    private TableColumn<Customer, String> provColumn;
+
+    @FXML
+    private TableColumn<Customer, String> postalColumn;
+
+    @FXML
+    private TableColumn<Customer, String> countryColumn;
+
+    @FXML
+    private TableColumn<Customer, String> homePhoneColumn;
+
+    @FXML
+    private TableColumn<Customer, String> cbusPhoneColumn;
+
+    @FXML
+    private TableColumn<Customer, String> cemailColumn;
+
+    @FXML
+    private TableColumn<Customer, Integer> agentIdColumn;
+
+    @FXML
     void addAgentClicked(MouseEvent event) {
 
         
@@ -275,6 +314,42 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         return data;
     }
 
+    private ObservableList<Customer> populateCustomerTable() throws SQLException {
+        ObservableList<Customer> data;
+        data = FXCollections.observableArrayList();
+
+        customeridColumn.setCellValueFactory(new PropertyValueFactory<>("CustomerId"));
+        cfirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("CustFirstName"));
+        clastNameColumn.setCellValueFactory(new PropertyValueFactory<>("CustLastName"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("CustAddress"));
+        cityColumn.setCellValueFactory(new PropertyValueFactory<>("CustCity"));
+        provColumn.setCellValueFactory(new PropertyValueFactory<>("CustProv"));
+        countryColumn.setCellValueFactory(new PropertyValueFactory<>("CustPostal"));
+        homePhoneColumn.setCellValueFactory(new PropertyValueFactory<>("CustCountry"));
+        cbusPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("CustHomePhone"));
+        cemailColumn.setCellValueFactory(new PropertyValueFactory<>("CustBusPhone"));
+        countryColumn.setCellValueFactory(new PropertyValueFactory<>("CustEmail"));
+        agentIdColumn.setCellValueFactory(new PropertyValueFactory<>("AgentId"));
+        try {
+            String query = "select * from Customers";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                data.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12)));
+                ctableview.setItems(data);
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        return data;
+    }
+
     private void connectDB() {
         // TODO Auto-generated method stub
         try {
@@ -336,9 +411,23 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         assert colCustomerId != null : "fx:id=\"colCustomerId\" was not injected: check your FXML file 'sample.fxml'.";
         assert colTripTypeId != null : "fx:id=\"colTripTypeId\" was not injected: check your FXML file 'sample.fxml'.";
         assert colPackageId != null : "fx:id=\"colPackageId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert ctableview != null : "fx:id=\"tableview\" was not injected: check your FXML file 'sample.fxml'.";
+        assert customeridColumn != null : "fx:id=\"customeridColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert cfirstNameColumn != null : "fx:id=\"firstNameColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert clastNameColumn != null : "fx:id=\"lastNameColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert addressColumn != null : "fx:id=\"addressColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert cityColumn != null : "fx:id=\"cityColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert provColumn != null : "fx:id=\"provColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert postalColumn != null : "fx:id=\"postalColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert countryColumn != null : "fx:id=\"countryColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert homePhoneColumn != null : "fx:id=\"homePhoneColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert cbusPhoneColumn != null : "fx:id=\"busPhoneColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert cemailColumn != null : "fx:id=\"emailColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert agentIdColumn != null : "fx:id=\"agentIdColumn\" was not injected: check your FXML file 'sample.fxml'.";
         populateAgentTable();
         populateProductTable();
         populateBookingTable();
+        populateCustomerTable();
 
     }
     }
