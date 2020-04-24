@@ -17,7 +17,6 @@ public class Controller {
     private Connection conn;
     private Statement stmt;
     private ResultSet rs;
-    final ObservableList options = FXCollections.observableArrayList();
 
     @FXML
     private ResourceBundle resources;
@@ -26,7 +25,23 @@ public class Controller {
     private URL location;
 
     @FXML
-    private TableView<Booking> tblBookings;
+    private Button btnAddAgent;
+    @FXML
+    private Button btnExitAddAgent;
+
+    @FXML
+    private Button btnAddBooking;
+
+    @FXML
+    private Button btnAddCustomer;
+    @FXML
+    private Button btnExitAddCustomer;
+
+    @FXML
+    private Button btnAddProduct;
+
+    @FXML
+    private Button btnExit;
 
     @FXML
     private TableColumn<Booking, Integer> colBookingId;
@@ -48,9 +63,6 @@ public class Controller {
 
     @FXML
     private TableColumn<Booking, Integer> colPackageId;
-
-    @FXML
-    private TableView<Agent> tblAgents;
 
     @FXML
     private TableColumn<Agent, Integer> agentidColumn;
@@ -77,131 +89,10 @@ public class Controller {
     private TableColumn<Agent, Integer> agencyIdColumn;
 
     @FXML
-    private TableView<Product> tblProducts;
-
-    @FXML
     private TableColumn<Product, Integer> colProductId;
 
     @FXML
     private TableColumn<Product, String> colProdName;
-
-    @FXML
-    void productsTableClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    private TextField tfAgentId;
-
-    @FXML
-    private TextField tfAgentFirstName;
-
-    @FXML
-    private TextField tfAgentMiddileInitial;
-
-    @FXML
-    private TextField tfAgentLastName;
-
-    @FXML
-    private TextField tfAgentPhone;
-
-    @FXML
-    private TextField tfAgentEmail;
-
-    @FXML
-    private TextField tfAgentPosition;
-
-    @FXML
-    private TextField tfAgencyID;
-
-    @FXML
-    private Button btnAddAgent;
-
-    @FXML
-    private Button btnExitAddAgent;
-    @FXML
-    private Button btnAddBooking;
-
-    @FXML
-    private Button btnExitAddBooking;
-
-    @FXML
-    private TextField tfBookingId;
-
-    @FXML
-    private TextField tfBookingDate;
-
-    @FXML
-    private TextField tfBookingNo;
-
-    @FXML
-    private TextField tfTravelerCount;
-
-    @FXML
-    private TextField tfCustomerIdBooking;
-
-    @FXML
-    private TextField tfTripTypeId;
-
-    @FXML
-    private TextField tfPackageId;
-
-    @FXML
-    private Button btnAddCustomer;
-
-    @FXML
-    private Button btnExitAddCustomer;
-
-    @FXML
-    private TextField tfCustomerId;
-
-    @FXML
-    private TextField tfCustFirstName;
-
-    @FXML
-    private TextField tfCustLastName;
-
-    @FXML
-    private TextField tfCustAddress;
-
-    @FXML
-    private TextField tfCustCity;
-
-    @FXML
-    private TextField tfCustProvince;
-
-    @FXML
-    private TextField tfCustPostalCode;
-
-    @FXML
-    private TextField tfCustCountry;
-
-    @FXML
-    private TextField tfCustHomePhone;
-
-    @FXML
-    private TextField tfCustBusinessPhone;
-
-    @FXML
-    private TextField tfCustEmail;
-
-    @FXML
-    private TextField tfCustAgentId;
-
-    @FXML
-    private Button btnAddProduct;
-
-    @FXML
-    private Button btnProductExit;
-
-    @FXML
-    private TextField tfProductId;
-
-    @FXML
-    private TextField tfProductName;
-
-    @FXML
-    private TableView<Customer> ctableview;
 
     @FXML
     private TableColumn<Customer, Integer> customeridColumn;
@@ -240,28 +131,134 @@ public class Controller {
     private TableColumn<Customer, Integer> agentIdColumn;
 
     @FXML
-    void addAgentClicked(MouseEvent event) {
+    private TextField tfAgentId;
 
-        
+    @FXML
+    private TextField tfAgentFirstName;
+
+    @FXML
+    private TextField tfAgentMiddileInitial;
+
+    @FXML
+    private TextField tfAgentLastName;
+
+    @FXML
+    private TextField tfAgentPhone;
+
+    @FXML
+    private TextField tfAgentEmail;
+
+    @FXML
+    private TextField tfAgentPosition;
+
+    @FXML
+    private TextField tfAgencyID;
+
+    @FXML
+    private TextField tfBookingId;
+
+    @FXML
+    private TextField tfBookingDate;
+
+    @FXML
+    private TextField tfBookingNo;
+
+    @FXML
+    private TextField tfTravelerCount;
+
+    @FXML
+    private TextField tfCustomerIdBooking;
+
+    @FXML
+    private TextField tfTripTypeId;
+
+    @FXML
+    private TextField tfPackageId;
+
+    @FXML
+    private TextField tfCustomerId;
+
+    @FXML
+    private TextField tfCustFirstName;
+
+    @FXML
+    private TextField tfCustLastName;
+
+    @FXML
+    private TextField tfCustAddress;
+
+    @FXML
+    private TextField tfCustCity;
+
+    @FXML
+    private TextField tfCustProvince;
+
+    @FXML
+    private TextField tfCustPostalCode;
+
+    @FXML
+    private TextField tfCustCountry;
+
+    @FXML
+    private TextField tfCustHomePhone;
+
+    @FXML
+    private TextField tfCustBusinessPhone;
+
+    @FXML
+    private TextField tfCustEmail;
+
+    @FXML
+    private TextField tfCustAgentId;
+
+    @FXML
+    private TextField tfProductId;
+
+    @FXML
+    private TextField tfProductName;
+
+    @FXML
+    private TableView<Booking> tblBookings;
+
+    @FXML
+    private TableView<Customer> ctableview;
+
+    @FXML
+    private TableView<Product> tblProducts;
+
+    @FXML
+    private TableView<Agent> tblAgents;
+
+    @FXML
+    void productsTableClicked(MouseEvent event) {
 
     }
+
+    @FXML
+    void addAgentClicked(MouseEvent event) {
+
+    }
+
+    @FXML
+    void btnExit(MouseEvent event) {
+        System.exit(0);
+
+    }
+
+    @FXML
+    void addBookingClicked(MouseEvent event) {
+
+    }
+
 
     @FXML
     void addCustomerClicked(MouseEvent event) {
 
     }
 
-    @FXML
-    void addCustomerExitClicked(MouseEvent event) {
-        System.exit(0);
-
-
-    }
 
     @FXML
-    void newAgentExitClicked(MouseEvent event) {
-        System.exit(0);
-
+    void addProductClicked(MouseEvent event) {
 
     }
 
@@ -409,7 +406,8 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
     void initialize() throws SQLException {
 
         assert btnAddBooking != null : "fx:id=\"btnAddBooking\" was not injected: check your FXML file 'sample.fxml'.";
-        assert btnExitAddBooking != null : "fx:id=\"btnExitAddBooking\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnAddProduct != null : "fx:id=\"btnAddProduct\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnAddBooking != null : "fx:id=\"btnAddBooking\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfBookingId != null : "fx:id=\"tfBookingId\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfBookingDate != null : "fx:id=\"tfBookingDate\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfBookingNo != null : "fx:id=\"tfBookingNo\" was not injected: check your FXML file 'sample.fxml'.";
@@ -418,7 +416,6 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         assert tfTripTypeId != null : "fx:id=\"tfTripTypeId\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfPackageId != null : "fx:id=\"tfPackageId\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnAddProduct != null : "fx:id=\"btnAddProduct\" was not injected: check your FXML file 'sample.fxml'.";
-        assert btnProductExit != null : "fx:id=\"btnProductExit\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfProductId != null : "fx:id=\"tfProductId\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfProductName != null : "fx:id=\"tfProductName\" was not injected: check your FXML file 'sample.fxml'.";
         assert tblAgents != null : "fx:id=\"tableview\" was not injected: check your FXML file 'sample.fxml'.";
@@ -475,6 +472,8 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         assert cbusPhoneColumn != null : "fx:id=\"busPhoneColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert cemailColumn != null : "fx:id=\"emailColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert agentIdColumn != null : "fx:id=\"agentIdColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnExit != null : "fx:id=\"btnExit\" was not injected: check your FXML file 'sample.fxml'.";
+
         populateAgentTable();
         populateProductTable();
         populateBookingTable();
