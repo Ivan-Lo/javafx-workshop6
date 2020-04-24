@@ -20,64 +20,76 @@ public class Controller {
     final ObservableList options = FXCollections.observableArrayList();
 
     @FXML
-    private TableView<Agents> tableview;
-
-    @FXML
-    private TableColumn<Agents, Integer> agentidColumn;
-
-    @FXML
-    private TableColumn<Agents, String> firstNameColumn;
-
-    @FXML
-    private TableColumn<Agents, String> middleInitialColumn;
-
-    @FXML
-    private TableColumn<Agents, String> lastNameColumn;
-
-    @FXML
-    private TableColumn<Agents,String> busPhoneColumn;
-
-    @FXML
-    private TableColumn<Agents, String> emailColumn;
-
-    @FXML
-    private TableColumn<Agents, String> agtPositionColumn;
-
-    @FXML
-    private TableColumn<Agents, Integer> agencyIdColumn;
-
-
-    @FXML
     private ResourceBundle resources;
 
     @FXML
     private URL location;
 
     @FXML
-    private TableView<Products> tblProducts;
+    private TableView<Booking> tblBookings;
 
     @FXML
-    private TableColumn<Products, Integer> colProductId;
+    private TableColumn<Booking, Integer> colBookingId;
 
     @FXML
-    private TableColumn<Products, String> colProdName;
+    private TableColumn<Booking, Timestamp> colBookingDate;
+
+    @FXML
+    private TableColumn<Booking, String> colBookingNumber;
+
+    @FXML
+    private TableColumn<Booking, Float> colTravelerCount;
+
+    @FXML
+    private TableColumn<Booking, Integer> colCustomerId;
+
+    @FXML
+    private TableColumn<Booking, String> colTripTypeId;
+
+    @FXML
+    private TableColumn<Booking, Integer> colPackageId;
+
+    @FXML
+    private TableView<Agent> tableview;
+
+    @FXML
+    private TableColumn<Agent, Integer> agentidColumn;
+
+    @FXML
+    private TableColumn<Agent, String> firstNameColumn;
+
+    @FXML
+    private TableColumn<Agent, String> middleInitialColumn;
+
+    @FXML
+    private TableColumn<Agent, String> lastNameColumn;
+
+    @FXML
+    private TableColumn<Agent,String> busPhoneColumn;
+
+    @FXML
+    private TableColumn<Agent, String> emailColumn;
+
+    @FXML
+    private TableColumn<Agent, String> agtPositionColumn;
+
+    @FXML
+    private TableColumn<Agent, Integer> agencyIdColumn;
+
+    @FXML
+    private TableView<Product> tblProducts;
+
+    @FXML
+    private TableColumn<Product, Integer> colProductId;
+
+    @FXML
+    private TableColumn<Product, String> colProdName;
 
     @FXML
     void productsTableClicked(MouseEvent event) {
 
     }
 
-    @FXML
-    private ListView<String> lvTable;
-
-    @FXML
-    private ComboBox<String> cmbTable;
-
-    @FXML
-    private Button btnEdit;
-
-    @FXML
-    private Button btnExit;
     @FXML
     private TextField tfAgentId;
 
@@ -167,17 +179,6 @@ public class Controller {
 
     }
 
-
-    @FXML
-    void editClicked(MouseEvent event) {
-
-    }
-
-    @FXML
-    void exitClicked(MouseEvent event) {
-        System.exit(0);
-    }
-
     @FXML
     void newAgentExitClicked(MouseEvent event) {
         System.exit(0);
@@ -185,20 +186,38 @@ public class Controller {
 
     }
 
-    //THIS IS THE LISTVIEW EVENT LISTENER
-    @FXML
-    void rowSelected(MouseEvent event) {
+    private ObservableList<Booking> populateBookingTable() throws SQLException {
+        ObservableList<Booking> data;
+        data = FXCollections.observableArrayList();
 
+        colBookingId.setCellValueFactory(new PropertyValueFactory<>("BookingId"));
+        colBookingDate.setCellValueFactory(new PropertyValueFactory<>("BookingDate"));
+        colBookingNumber.setCellValueFactory(new PropertyValueFactory<>("BookingNo"));
+        colTravelerCount.setCellValueFactory(new PropertyValueFactory<>("TravelerCount"));
+        colCustomerId.setCellValueFactory(new PropertyValueFactory<>("CustomerId"));
+        colTripTypeId.setCellValueFactory(new PropertyValueFactory<>("TripTypeId"));
+        colPackageId.setCellValueFactory(new PropertyValueFactory<>("PackageId"));
+        try {
+            String query = "select * from Bookings";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                data.add(new Booking(rs.getInt(1), rs.getTimestamp(2), rs.getString(3), rs.getFloat(4), rs.getInt(5),
+                        rs.getString(6), rs.getInt(7)));
+                tblBookings.setItems(data);
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        return data;
     }
-
-    //THIS IS THE COMBOBOX EVENT LISTENER
-    @FXML
-    void tableSelected(MouseEvent event) {
-
-    }
-
-private ObservableList<Agents> populateAgentTable() throws SQLException {
-    ObservableList<Agents> data;
+private ObservableList<Agent> populateAgentTable() throws SQLException {
+    ObservableList<Agent> data;
     data = FXCollections.observableArrayList();
 
     agentidColumn.setCellValueFactory(new PropertyValueFactory<>("AgentId"));
@@ -217,7 +236,7 @@ private ObservableList<Agents> populateAgentTable() throws SQLException {
         rs = pst.executeQuery();
 
         while (rs.next()) {
-            data.add(new Agents(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+            data.add(new Agent(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
                     rs.getString(6), rs.getString(7), rs.getInt(8)));
             tableview.setItems(data);
         }
@@ -228,8 +247,8 @@ private ObservableList<Agents> populateAgentTable() throws SQLException {
     }
     return data;
 }
-    private ObservableList<Products> populateProductTable() throws SQLException {
-        ObservableList<Products> data;
+    private ObservableList<Product> populateProductTable() throws SQLException {
+        ObservableList<Product> data;
         data = FXCollections.observableArrayList();
 
         colProductId.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
@@ -243,7 +262,7 @@ private ObservableList<Agents> populateAgentTable() throws SQLException {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                data.add(new Products(rs.getInt(1), rs.getString(2)));
+                data.add(new Product(rs.getInt(1), rs.getString(2)));
                 tblProducts.setItems(data);
             }
             pst.close();
@@ -283,10 +302,6 @@ private ObservableList<Agents> populateAgentTable() throws SQLException {
         assert emailColumn != null : "fx:id=\"emailColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert agtPositionColumn != null : "fx:id=\"agtPositionColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert agencyIdColumn != null : "fx:id=\"agencyIdColumn\" was not injected: check your FXML file 'sample.fxml'.";
-        assert cmbTable != null : "fx:id=\"cmbTable\" was not injected: check your FXML file 'sample.fxml'.";
-        assert lvTable != null : "fx:id=\"lvTable\" was not injected: check your FXML file 'sample.fxml'.";
-        assert btnEdit != null : "fx:id=\"btnEdit\" was not injected: check your FXML file 'sample.fxml'.";
-        assert btnExit != null : "fx:id=\"btnExit\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfAgentId != null : "fx:id=\"tfAgentId\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfAgentFirstName != null : "fx:id=\"tfAgentFirstName\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfAgentMiddileInitial != null : "fx:id=\"tfAgentMiddileInitial\" was not injected: check your FXML file 'sample.fxml'.";
@@ -311,9 +326,17 @@ private ObservableList<Agents> populateAgentTable() throws SQLException {
         assert tfCustBusinessPhone != null : "fx:id=\"tfCustBusinessPhone\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfCustEmail != null : "fx:id=\"tfCustEmail\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfCustAgentId != null : "fx:id=\"tfCustAgentId\" was not injected: check your FXML file 'sample.fxml'.";
-
+        assert tblBookings != null : "fx:id=\"tblBookings\" was not injected: check your FXML file 'sample.fxml'.";
+        assert colBookingId != null : "fx:id=\"colBookingId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert colBookingDate != null : "fx:id=\"colBookingDate\" was not injected: check your FXML file 'sample.fxml'.";
+        assert colBookingNumber != null : "fx:id=\"colBookingNumber\" was not injected: check your FXML file 'sample.fxml'.";
+        assert colTravelerCount != null : "fx:id=\"colTravelerCount\" was not injected: check your FXML file 'sample.fxml'.";
+        assert colCustomerId != null : "fx:id=\"colCustomerId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert colTripTypeId != null : "fx:id=\"colTripTypeId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert colPackageId != null : "fx:id=\"colPackageId\" was not injected: check your FXML file 'sample.fxml'.";
         populateAgentTable();
         populateProductTable();
+        populateBookingTable();
 
     }
     }

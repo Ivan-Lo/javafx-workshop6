@@ -1,6 +1,6 @@
 package sample;
 
-public class Products {
+public class Product {
 
     private Integer ProductId;
     private  String ProdName;
@@ -29,7 +29,7 @@ public class Products {
                 '}';
     }
 
-    public Products(Integer productId, String prodName) {
+    public Product(Integer productId, String prodName) {
         ProductId = productId;
         ProdName = prodName;
     }

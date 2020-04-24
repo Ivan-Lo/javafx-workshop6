@@ -1,9 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 
 <?import javafx.scene.control.Button?>
-<?import javafx.scene.control.ComboBox?>
 <?import javafx.scene.control.Label?>
-<?import javafx.scene.control.ListView?>
 <?import javafx.scene.control.Tab?>
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
@@ -14,26 +12,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/11.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="sample.Controller">
    <children>
-      <TabPane prefHeight="400.0" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+      <TabPane layoutY="-47.0" prefHeight="447.0" prefWidth="657.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
           <Tab text="Edit">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
                      <children>
-                        <ComboBox id="cmbTable" fx:id="cmbTable" layoutX="29.0" layoutY="92.0" onMouseClicked="#tableSelected" prefWidth="150.0" />
-                        <ListView fx:id="lvTable" layoutX="210.0" layoutY="56.0" onMouseClicked="#rowSelected" prefHeight="224.0" prefWidth="345.0" />
-                        <Label alignment="CENTER" layoutX="271.0" layoutY="14.0" prefHeight="41.0" prefWidth="224.0" text="Travel Experts " textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="24.0" />
-                           </font>
-                        </Label>
-                        <Label alignment="CENTER" layoutX="43.0" layoutY="42.0" prefHeight="42.0" prefWidth="122.0" text="Table to Edit" textAlignment="CENTER">
-                           <font>
-                              <Font name="System Bold" size="14.0" />
-                           </font>
-                        </Label>
-                        <Button fx:id="btnEdit" layoutX="237.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#editClicked" prefHeight="42.0" prefWidth="97.0" text="Edit" />
-                        <Button fx:id="btnExit" layoutX="383.0" layoutY="298.0" mnemonicParsing="false" onMouseClicked="#exitClicked" prefHeight="42.0" prefWidth="97.0" text="Exit" />
                         <TabPane layoutX="54.0" layoutY="35.0" prefHeight="369.6" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                           <tabs>
                             <Tab text="Products">
@@ -42,8 +26,8 @@
                                        <children>
                                           <TableView fx:id="tblProducts" layoutX="102.0" layoutY="50.0" onMouseClicked="#productsTableClicked" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
-                                              <TableColumn fx:id="colProductId" prefWidth="75.0" text="ProductId" />
-                                              <TableColumn fx:id="colProdName" prefWidth="75.0" text="ProdName" />
+                                              <TableColumn fx:id="colProductId" prefWidth="75.0" text="Product Id" />
+                                              <TableColumn fx:id="colProdName" prefWidth="75.0" text="Product Name" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -55,18 +39,42 @@
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                  <TableView fx:id="tableview" layoutX="141.0" layoutY="79.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                     <columns>
-                                       <TableColumn fx:id="agentidColumn" prefWidth="62.400022864341736" text="AgentId" />
-                                       <TableColumn fx:id="firstNameColumn" prefWidth="91.9999771118164" text="AgtFirstName" />
-                                       <TableColumn fx:id="middleInitialColumn" prefWidth="97.5999755859375" text="AgtMiddleInitial" />
-                                       <TableColumn fx:id="lastNameColumn" prefWidth="99.20001220703125" text="AgtLastName" />
-                                       <TableColumn fx:id="busPhoneColumn" prefWidth="96.79998779296875" text="AgtBusPhone" />
-                                       <TableColumn fx:id="emailColumn" prefWidth="90.39999389648438" text="AgtEmail" />
-                                       <TableColumn fx:id="agtPositionColumn" prefWidth="91.2000732421875" text="AgtPosition" />
-                                       <TableColumn fx:id="agencyIdColumn" prefWidth="81.599853515625" text="AgencyId" />
+                                       <TableColumn fx:id="agentidColumn" prefWidth="62.400022864341736" text="Agent Id" />
+                                       <TableColumn fx:id="firstNameColumn" prefWidth="74.40001678466797" text="First Name" />
+                                       <TableColumn fx:id="middleInitialColumn" prefWidth="84.0" text="Middle Initial" />
+                                       <TableColumn fx:id="lastNameColumn" prefWidth="83.199951171875" text="Last Name" />
+                                       <TableColumn fx:id="busPhoneColumn" prefWidth="74.39996337890625" text="Phone" />
+                                       <TableColumn fx:id="emailColumn" prefWidth="80.800048828125" text="Email" />
+                                       <TableColumn fx:id="agtPositionColumn" minWidth="0.0" prefWidth="75.20004272460938" text="Position" />
+                                       <TableColumn fx:id="agencyIdColumn" prefWidth="68.79998779296875" text="AgencyId" />
                                     </columns>
                                  </TableView>
                               </content>
                             </Tab>
+                              <Tab text="Customers">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                </content>
+                              </Tab>
+                              <Tab text="Bookings">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="tblBookings" layoutX="233.0" layoutY="77.0" prefHeight="342.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="colBookingId" prefWidth="67.99997103214264" text="Booking ID" />
+                                              <TableColumn fx:id="colBookingDate" prefWidth="85.59990692138672" text="Booking Date" />
+                                                <TableColumn fx:id="colBookingNumber" prefWidth="108.79998779296875" text="Booking Number" />
+                                                <TableColumn fx:id="colTravelerCount" prefWidth="97.60003662109375" text="Traveler Count" />
+                                                <TableColumn fx:id="colCustomerId" prefWidth="84.79998779296875" text="Customer ID" />
+                                                <TableColumn fx:id="colTripTypeId" prefWidth="76.80007934570312" text=" Trip Type ID" />
+                                                <TableColumn fx:id="colPackageId" prefWidth="81.5999755859375" text="Package ID" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
                           </tabs>
                         </TabPane>
                      </children></AnchorPane>

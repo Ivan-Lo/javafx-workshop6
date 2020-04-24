@@ -5,7 +5,7 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Agents {
+public class Agent {
 
     private final IntegerProperty AgentId;
     private final StringProperty AgtFirstName;
@@ -16,7 +16,7 @@ public class Agents {
     private final StringProperty AgtPosition;
     private final IntegerProperty AgencyId;
 
-    public Agents(int agentId, String agtFirstName, String agtMiddleInitial, String agtLastName, String agtBusPhone, String agtEmail, String agtPosition,int agencyId) {
+    public Agent(int agentId, String agtFirstName, String agtMiddleInitial, String agtLastName, String agtBusPhone, String agtEmail, String agtPosition, int agencyId) {
 
         this.AgentId = new SimpleIntegerProperty(agentId);
         this.AgtFirstName = new SimpleStringProperty(agtFirstName);
