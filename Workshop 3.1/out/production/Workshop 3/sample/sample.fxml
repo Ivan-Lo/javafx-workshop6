@@ -54,6 +54,22 @@
                               <Tab text="Customers">
                                 <content>
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    <TableView fx:id="ctableview" layoutX="141.0" layoutY="79.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+                                        <columns>
+                                            <TableColumn fx:id="customeridColumn" prefWidth="62.400022864341736" text="CustomerId" />
+                                            <TableColumn fx:id="cfirstNameColumn" prefWidth="91.9999771118164" text="CustFirstName" />
+                                            <TableColumn fx:id="clastNameColumn" prefWidth="97.5999755859375" text="CustLastName" />
+                                            <TableColumn fx:id="addressColumn" prefWidth="99.20001220703125" text="CustAddress" />
+                                            <TableColumn fx:id="cityColumn" prefWidth="96.79998779296875" text="CustCity" />
+                                            <TableColumn fx:id="provColumn" prefWidth="90.39999389648438" text="CustProv" />
+                                            <TableColumn fx:id="postalColumn" prefWidth="91.2000732421875" text="CustPostal" />
+                                            <TableColumn fx:id="countryColumn" prefWidth="81.599853515625" text="CustCountry" />
+                                            <TableColumn fx:id="homePhoneColumn" prefWidth="81.599853515625" text="CustHomePhone" />
+                                            <TableColumn fx:id="cbusPhoneColumn" prefWidth="81.599853515625" text="CustBusPhone" />
+                                            <TableColumn fx:id="cemailColumn" prefWidth="81.599853515625" text="CustEmail" />
+                                            <TableColumn fx:id="agentIdColumn" prefWidth="81.599853515625" text="AgentId" />
+                                        </columns>
+                                    </TableView>
                                 </content>
                               </Tab>
                               <Tab text="Bookings">
