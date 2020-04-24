@@ -14,88 +14,6 @@
    <children>
       <TabPane layoutY="-47.0" prefHeight="447.0" prefWidth="657.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
         <tabs>
-          <Tab text="Edit">
-            <content>
-              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                     <children>
-                        <TabPane layoutX="54.0" layoutY="35.0" prefHeight="369.6" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                          <tabs>
-                            <Tab text="Products">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <TableView fx:id="tblProducts" layoutX="102.0" layoutY="50.0" onMouseClicked="#productsTableClicked" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columns>
-                                              <TableColumn fx:id="colProductId" prefWidth="75.0" text="Product Id" />
-                                              <TableColumn fx:id="colProdName" prefWidth="75.0" text="Product Name" />
-                                            </columns>
-                                          </TableView>
-                                       </children>
-                                    </AnchorPane>
-                              </content>
-                            </Tab>
-                            <Tab text="Agents">
-                              <content>
-                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                 <TableView fx:id="tblAgents" layoutX="141.0" layoutY="79.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-                                    <columns>
-                                       <TableColumn fx:id="agentidColumn" prefWidth="62.400022864341736" text="Agent Id" />
-                                       <TableColumn fx:id="firstNameColumn" prefWidth="74.40001678466797" text="First Name" />
-                                       <TableColumn fx:id="middleInitialColumn" prefWidth="84.0" text="Middle Initial" />
-                                       <TableColumn fx:id="lastNameColumn" prefWidth="83.199951171875" text="Last Name" />
-                                       <TableColumn fx:id="busPhoneColumn" prefWidth="74.39996337890625" text="Phone" />
-                                       <TableColumn fx:id="emailColumn" prefWidth="80.800048828125" text="Email" />
-                                       <TableColumn fx:id="agtPositionColumn" minWidth="0.0" prefWidth="75.20004272460938" text="Position" />
-                                       <TableColumn fx:id="agencyIdColumn" prefWidth="68.79998779296875" text="AgencyId" />
-                                    </columns>
-                                 </TableView>
-                              </content>
-                            </Tab>
-                              <Tab text="Customers">
-                                <content>
-                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
-                                    <TableView fx:id="ctableview" layoutX="141.0" layoutY="79.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
-                                        <columns>
-                                            <TableColumn fx:id="customeridColumn" prefWidth="62.400022864341736" text="CustomerId" />
-                                            <TableColumn fx:id="cfirstNameColumn" prefWidth="91.9999771118164" text="CustFirstName" />
-                                            <TableColumn fx:id="clastNameColumn" prefWidth="97.5999755859375" text="CustLastName" />
-                                            <TableColumn fx:id="addressColumn" prefWidth="99.20001220703125" text="CustAddress" />
-                                            <TableColumn fx:id="cityColumn" prefWidth="96.79998779296875" text="CustCity" />
-                                            <TableColumn fx:id="provColumn" prefWidth="90.39999389648438" text="CustProv" />
-                                            <TableColumn fx:id="postalColumn" prefWidth="91.2000732421875" text="CustPostal" />
-                                            <TableColumn fx:id="countryColumn" prefWidth="81.599853515625" text="CustCountry" />
-                                            <TableColumn fx:id="homePhoneColumn" prefWidth="81.599853515625" text="CustHomePhone" />
-                                            <TableColumn fx:id="cbusPhoneColumn" prefWidth="81.599853515625" text="CustBusPhone" />
-                                            <TableColumn fx:id="cemailColumn" prefWidth="81.599853515625" text="CustEmail" />
-                                            <TableColumn fx:id="agentIdColumn" prefWidth="81.599853515625" text="AgentId" />
-                                        </columns>
-                                    </TableView>
-                                </content>
-                              </Tab>
-                              <Tab text="Bookings">
-                                 <content>
-                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
-                                       <children>
-                                          <TableView fx:id="tblBookings" layoutX="233.0" layoutY="77.0" prefHeight="342.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
-                                            <columns>
-                                              <TableColumn fx:id="colBookingId" prefWidth="67.99997103214264" text="Booking ID" />
-                                              <TableColumn fx:id="colBookingDate" prefWidth="85.59990692138672" text="Booking Date" />
-                                                <TableColumn fx:id="colBookingNumber" prefWidth="108.79998779296875" text="Booking Number" />
-                                                <TableColumn fx:id="colTravelerCount" prefWidth="97.60003662109375" text="Traveler Count" />
-                                                <TableColumn fx:id="colCustomerId" prefWidth="84.79998779296875" text="Customer ID" />
-                                                <TableColumn fx:id="colTripTypeId" prefWidth="76.80007934570312" text=" Trip Type ID" />
-                                                <TableColumn fx:id="colPackageId" prefWidth="81.5999755859375" text="Package ID" />
-                                            </columns>
-                                          </TableView>
-                                       </children>
-                                    </AnchorPane>
-                                 </content>
-                              </Tab>
-                          </tabs>
-                        </TabPane>
-                     </children></AnchorPane>
-            </content>
-          </Tab>
           <Tab text="Add">
             <content>
               <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -165,6 +83,63 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
+                              <Tab text="Booking">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Label alignment="CENTER" layoutX="142.0" layoutY="6.0" prefHeight="42.0" prefWidth="315.0" text="Add a New Booking" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="btnAddBooking" layoutX="160.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#addCustomerClicked" prefHeight="50.0" prefWidth="119.0" text="Submit" />
+                                          <Button fx:id="btnExitAddBooking" layoutX="323.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#addCustomerExitClicked" prefHeight="50.0" prefWidth="119.0" text="Exit" />
+                                          <Label alignment="CENTER" layoutX="54.0" layoutY="43.0" prefHeight="30.0" prefWidth="112.0" text="Booking ID">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" layoutX="54.0" layoutY="102.0" prefHeight="30.0" prefWidth="112.0" text="Booking Date">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" layoutX="54.0" layoutY="155.0" prefHeight="30.0" prefWidth="112.0" text="Booking Number">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" layoutX="63.0" layoutY="208.0" prefHeight="30.0" prefWidth="112.0" text="Traveler Count">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" layoutX="244.0" layoutY="155.0" prefHeight="30.0" prefWidth="112.0" text="Package ID">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" layoutX="244.0" layoutY="102.0" prefHeight="30.0" prefWidth="112.0" text="Trip Type ID">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" layoutX="236.0" layoutY="43.0" prefHeight="30.0" prefWidth="112.0" text="Customer ID">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tfBookingId" layoutX="45.0" layoutY="77.0" />
+                                          <TextField fx:id="tfBookingDate" layoutX="45.0" layoutY="133.0" />
+                                          <TextField fx:id="tfBookingNo" layoutX="45.0" layoutY="183.0" />
+                                          <TextField fx:id="tfTravelerCount" layoutX="45.0" layoutY="238.0" />
+                                          <TextField fx:id="tfCustomerIdBooking" layoutX="226.0" layoutY="77.0" />
+                                          <TextField fx:id="tfTripTypeId" layoutX="226.0" layoutY="133.0" />
+                                          <TextField fx:id="tfPackageId" layoutX="226.0" layoutY="183.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
                             <Tab text="Customer">
                               <content>
                                 <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
@@ -248,6 +223,115 @@
                                           <TextField fx:id="tfCustBusinessPhone" layoutX="420.0" layoutY="133.0" />
                                           <TextField fx:id="tfCustEmail" layoutX="420.0" layoutY="183.0" />
                                           <TextField fx:id="tfCustAgentId" layoutX="420.0" layoutY="238.0" />
+                                       </children>
+                                    </AnchorPane>
+                              </content>
+                            </Tab>
+                              <Tab text="Product">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Label alignment="CENTER" layoutX="173.0" layoutY="14.0" prefHeight="42.0" prefWidth="315.0" text="Add a New Product" textAlignment="CENTER">
+                                             <font>
+                                                <Font name="System Bold Italic" size="24.0" />
+                                             </font>
+                                          </Label>
+                                          <Button fx:id="btnAddProduct" layoutX="174.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#addCustomerClicked" prefHeight="50.0" prefWidth="119.0" text="Submit" />
+                                          <Button fx:id="btnProductExit" layoutX="342.0" layoutY="275.0" mnemonicParsing="false" onMouseClicked="#addCustomerExitClicked" prefHeight="50.0" prefWidth="119.0" text="Exit" />
+                                          <Label alignment="CENTER" layoutX="163.0" layoutY="99.0" prefHeight="30.0" prefWidth="112.0" text="Product ID">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <Label alignment="CENTER" layoutX="331.0" layoutY="99.0" prefHeight="30.0" prefWidth="170.0" text="Product Name">
+                                             <font>
+                                                <Font size="18.0" />
+                                             </font>
+                                          </Label>
+                                          <TextField fx:id="tfProductId" layoutX="145.0" layoutY="130.0" />
+                                          <TextField fx:id="tfProductName" layoutX="342.0" layoutY="130.0" />
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                          </tabs>
+                        </TabPane>
+                     </children></AnchorPane>
+            </content>
+          </Tab>
+          <Tab text="Edit">
+            <content>
+              <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                     <children>
+                        <TabPane layoutX="54.0" layoutY="35.0" prefHeight="369.6" prefWidth="600.0" tabClosingPolicy="UNAVAILABLE" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                          <tabs>
+                            <Tab text="Agents">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                 <TableView fx:id="tblAgents" layoutX="141.0" layoutY="79.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+                                    <columns>
+                                       <TableColumn fx:id="agentidColumn" prefWidth="62.400022864341736" text="Agent Id" />
+                                       <TableColumn fx:id="firstNameColumn" prefWidth="74.40001678466797" text="First Name" />
+                                       <TableColumn fx:id="middleInitialColumn" prefWidth="84.0" text="Middle Initial" />
+                                       <TableColumn fx:id="lastNameColumn" prefWidth="83.199951171875" text="Last Name" />
+                                       <TableColumn fx:id="busPhoneColumn" prefWidth="74.39996337890625" text="Phone" />
+                                       <TableColumn fx:id="emailColumn" prefWidth="80.800048828125" text="Email" />
+                                       <TableColumn fx:id="agtPositionColumn" minWidth="0.0" prefWidth="75.20004272460938" text="Position" />
+                                       <TableColumn fx:id="agencyIdColumn" prefWidth="68.79998779296875" text="AgencyId" />
+                                    </columns>
+                                 </TableView>
+                              </content>
+                            </Tab>
+                              <Tab text="Bookings">
+                                 <content>
+                                    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="tblBookings" layoutX="233.0" layoutY="77.0" prefHeight="342.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="colBookingId" prefWidth="67.99997103214264" text="Booking ID" />
+                                              <TableColumn fx:id="colBookingDate" prefWidth="85.59990692138672" text="Booking Date" />
+                                                <TableColumn fx:id="colBookingNumber" prefWidth="108.79998779296875" text="Booking Number" />
+                                                <TableColumn fx:id="colTravelerCount" prefWidth="97.60003662109375" text="Traveler Count" />
+                                                <TableColumn fx:id="colCustomerId" prefWidth="84.79998779296875" text="Customer ID" />
+                                                <TableColumn fx:id="colTripTypeId" prefWidth="76.80007934570312" text=" Trip Type ID" />
+                                                <TableColumn fx:id="colPackageId" prefWidth="81.5999755859375" text="Package ID" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                 </content>
+                              </Tab>
+                              <Tab text="Customers">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
+                                    <TableView fx:id="ctableview" layoutX="141.0" layoutY="79.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
+                                        <columns>
+                                            <TableColumn fx:id="customeridColumn" prefWidth="62.400022864341736" text="CustomerId" />
+                                            <TableColumn fx:id="cfirstNameColumn" prefWidth="91.9999771118164" text="CustFirstName" />
+                                            <TableColumn fx:id="clastNameColumn" prefWidth="97.5999755859375" text="CustLastName" />
+                                            <TableColumn fx:id="addressColumn" prefWidth="99.20001220703125" text="CustAddress" />
+                                            <TableColumn fx:id="cityColumn" prefWidth="96.79998779296875" text="CustCity" />
+                                            <TableColumn fx:id="provColumn" prefWidth="90.39999389648438" text="CustProv" />
+                                            <TableColumn fx:id="postalColumn" prefWidth="91.2000732421875" text="CustPostal" />
+                                            <TableColumn fx:id="countryColumn" prefWidth="81.599853515625" text="CustCountry" />
+                                            <TableColumn fx:id="homePhoneColumn" prefWidth="81.599853515625" text="CustHomePhone" />
+                                            <TableColumn fx:id="cbusPhoneColumn" prefWidth="81.599853515625" text="CustBusPhone" />
+                                            <TableColumn fx:id="cemailColumn" prefWidth="81.599853515625" text="CustEmail" />
+                                            <TableColumn fx:id="agentIdColumn" prefWidth="81.599853515625" text="AgentId" />
+                                        </columns>
+                                    </TableView>
+                                </content>
+                              </Tab>
+                            <Tab text="Products">
+                              <content>
+                                <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView fx:id="tblProducts" layoutX="102.0" layoutY="50.0" onMouseClicked="#productsTableClicked" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
+                                            <columns>
+                                              <TableColumn fx:id="colProductId" prefWidth="75.0" text="Product Id" />
+                                              <TableColumn fx:id="colProdName" prefWidth="75.0" text="Product Name" />
+                                            </columns>
+                                          </TableView>
                                        </children>
                                     </AnchorPane>
                               </content>

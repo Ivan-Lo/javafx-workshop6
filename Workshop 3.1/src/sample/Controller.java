@@ -119,6 +119,32 @@ public class Controller {
 
     @FXML
     private Button btnExitAddAgent;
+    @FXML
+    private Button btnAddBooking;
+
+    @FXML
+    private Button btnExitAddBooking;
+
+    @FXML
+    private TextField tfBookingId;
+
+    @FXML
+    private TextField tfBookingDate;
+
+    @FXML
+    private TextField tfBookingNo;
+
+    @FXML
+    private TextField tfTravelerCount;
+
+    @FXML
+    private TextField tfCustomerIdBooking;
+
+    @FXML
+    private TextField tfTripTypeId;
+
+    @FXML
+    private TextField tfPackageId;
 
     @FXML
     private Button btnAddCustomer;
@@ -161,6 +187,18 @@ public class Controller {
 
     @FXML
     private TextField tfCustAgentId;
+
+    @FXML
+    private Button btnAddProduct;
+
+    @FXML
+    private Button btnProductExit;
+
+    @FXML
+    private TextField tfProductId;
+
+    @FXML
+    private TextField tfProductName;
 
     @FXML
     private TableView<Customer> ctableview;
@@ -370,6 +408,19 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
     @FXML
     void initialize() throws SQLException {
 
+        assert btnAddBooking != null : "fx:id=\"btnAddBooking\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnExitAddBooking != null : "fx:id=\"btnExitAddBooking\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfBookingId != null : "fx:id=\"tfBookingId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfBookingDate != null : "fx:id=\"tfBookingDate\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfBookingNo != null : "fx:id=\"tfBookingNo\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfTravelerCount != null : "fx:id=\"tfTravelerCount\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfCustomerIdBooking != null : "fx:id=\"tfCustomerIdBooking\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfTripTypeId != null : "fx:id=\"tfTripTypeId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfPackageId != null : "fx:id=\"tfPackageId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnAddProduct != null : "fx:id=\"btnAddProduct\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnProductExit != null : "fx:id=\"btnProductExit\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfProductId != null : "fx:id=\"tfProductId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfProductName != null : "fx:id=\"tfProductName\" was not injected: check your FXML file 'sample.fxml'.";
         assert tblAgents != null : "fx:id=\"tableview\" was not injected: check your FXML file 'sample.fxml'.";
         assert agentidColumn != null : "fx:id=\"agentidColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert firstNameColumn != null : "fx:id=\"firstNameColumn\" was not injected: check your FXML file 'sample.fxml'.";
