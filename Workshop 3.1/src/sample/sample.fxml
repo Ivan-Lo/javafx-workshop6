@@ -42,8 +42,8 @@
                                        <children>
                                           <TableView fx:id="tblProducts" layoutX="102.0" layoutY="50.0" onMouseClicked="#productsTableClicked" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
-                                              <TableColumn fx:id="ProductId" prefWidth="75.0" text="ProductId" />
-                                              <TableColumn fx:id="ProdName" prefWidth="75.0" text="ProdName" />
+                                              <TableColumn fx:id="colProductId" prefWidth="75.0" text="ProductId" />
+                                              <TableColumn fx:id="colProdName" prefWidth="75.0" text="ProdName" />
                                             </columns>
                                           </TableView>
                                        </children>

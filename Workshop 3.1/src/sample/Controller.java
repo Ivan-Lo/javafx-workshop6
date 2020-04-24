@@ -3,14 +3,11 @@ package sample;
 
 import java.net.URL;
 import java.sql.*;
-import java.util.ArrayList;
 import java.util.ResourceBundle;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
-import javafx.fxml.Initializable;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
@@ -200,30 +197,61 @@ public class Controller {
 
     }
 
-    private ObservableList<String> items = FXCollections.observableArrayList();
+private ObservableList<Agents> populateAgentTable() throws SQLException {
+    ObservableList<Agents> data;
+    data = FXCollections.observableArrayList();
 
+    agentidColumn.setCellValueFactory(new PropertyValueFactory<>("AgentId"));
+    firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("AgtFirstName"));
+    middleInitialColumn.setCellValueFactory(new PropertyValueFactory<>("AgtMiddleInitial"));
+    lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("AgtLastName"));
+    busPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("AgtBusPhone"));
+    emailColumn.setCellValueFactory(new PropertyValueFactory<>("AgtEmail"));
+    agtPositionColumn.setCellValueFactory(new PropertyValueFactory<>("AgtPosition"));
+    agencyIdColumn.setCellValueFactory(new PropertyValueFactory<>("AgencyId"));
+    try {
+        String query = "select * from Agents";
+        conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
 
-    private ArrayList<String> getAllTables() throws SQLException {
-        ArrayList<String> listOfTables = new ArrayList<>();
+        PreparedStatement pst = conn.prepareStatement(query);
+        rs = pst.executeQuery();
 
-
-        ResultSet rs = null;
-        DatabaseMetaData meta = conn.getMetaData();
-        rs = meta.getTables(null, null, null, new String[]{
-                "TABLE"
-        });
-        int count = 0;
-        System.out.println("All table names are in test database:");
         while (rs.next()) {
-            String tblName = rs.getString("TABLE_NAME");
-            listOfTables.add(rs.getString("TABLE_NAME"));
-
-            System.out.println(tblName);
-            count++;
+            data.add(new Agents(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                    rs.getString(6), rs.getString(7), rs.getInt(8)));
+            tableview.setItems(data);
         }
-        return listOfTables;
+        pst.close();
+        rs.close();
+    } catch (SQLException ex) {
+        System.err.println("Error" + ex);
+    }
+    return data;
+}
+    private ObservableList<Products> populateProductTable() throws SQLException {
+        ObservableList<Products> data;
+        data = FXCollections.observableArrayList();
 
+        colProductId.setCellValueFactory(new PropertyValueFactory<>("ProductId"));
+        colProdName.setCellValueFactory(new PropertyValueFactory<>("ProdName"));
 
+        try {
+            String query = "select * from Products";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                data.add(new Products(rs.getInt(1), rs.getString(2)));
+                tblProducts.setItems(data);
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        return data;
     }
 
     private void connectDB() {
@@ -243,8 +271,6 @@ public class Controller {
 
 
 
-    private ObservableList<Agents>data;
-    private DbConnection dc;
     @FXML
     void initialize() throws SQLException {
 
@@ -286,34 +312,8 @@ public class Controller {
         assert tfCustEmail != null : "fx:id=\"tfCustEmail\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfCustAgentId != null : "fx:id=\"tfCustAgentId\" was not injected: check your FXML file 'sample.fxml'.";
 
-        data= FXCollections.observableArrayList();
-
-        agentidColumn.setCellValueFactory(new PropertyValueFactory<>("AgentId"));
-        firstNameColumn.setCellValueFactory(new PropertyValueFactory<>("AgtFirstName"));
-        middleInitialColumn.setCellValueFactory(new PropertyValueFactory<>("AgtMiddleInitial"));
-        lastNameColumn.setCellValueFactory(new PropertyValueFactory<>("AgtLastName"));
-        busPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("AgtBusPhone"));
-        emailColumn.setCellValueFactory(new PropertyValueFactory<>("AgtEmail"));
-        agtPositionColumn.setCellValueFactory(new PropertyValueFactory<>("AgtPosition"));
-        agencyIdColumn.setCellValueFactory(new PropertyValueFactory<>("AgencyId"));
-        try{
-            String query = "select * from Agents";
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
-
-            PreparedStatement pst = conn.prepareStatement(query);
-            rs = pst.executeQuery();
-
-            while (rs.next()) {
-                data.add(new Agents(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4),rs.getString(5),
-                        rs.getString(6),rs.getString(7),rs.getInt(8)));
-                tableview.setItems(data);
-            }
-            pst.close();
-            rs.close();
-        } catch(SQLException ex){
-            System.err.println("Error" + ex);
-        }
-
+        populateAgentTable();
+        populateProductTable();
 
     }
     }
