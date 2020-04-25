@@ -8,7 +8,7 @@ public class Booking {
     private Integer BookingId;
     private Timestamp BookingDate;
     private String BookingNo;
-    private Float TravelerCount;
+    private Integer TravelerCount;
     private Integer CustomerId;
     private String TripTypeId;
     private Integer PackageId;
@@ -50,11 +50,11 @@ public class Booking {
         BookingNo = bookingNo;
     }
 
-    public Float getTravelerCount() {
+    public Integer getTravelerCount() {
         return TravelerCount;
     }
 
-    public void setTravelerCount(Float travelerCount) {
+    public void setTravelerCount(Integer travelerCount) {
         TravelerCount = travelerCount;
     }
 
@@ -82,7 +82,7 @@ public class Booking {
         PackageId = packageId;
     }
 
-    public Booking(Integer bookingId, Timestamp bookingDate, String bookingNo, Float travelerCount, Integer customerId, String tripTypeId, Integer packageId) {
+    public Booking(Integer bookingId, Timestamp bookingDate, String bookingNo, Integer travelerCount, Integer customerId, String tripTypeId, Integer packageId) {
         BookingId = bookingId;
         BookingDate = bookingDate;
         BookingNo = bookingNo;

@@ -3,7 +3,9 @@ package sample;
 
 import java.net.URL;
 import java.sql.*;
+import java.util.Optional;
 import java.util.ResourceBundle;
+import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -11,6 +13,7 @@ import javafx.fxml.FXML;
 import javafx.scene.control.*;
 import javafx.scene.control.cell.PropertyValueFactory;
 import javafx.scene.input.MouseEvent;
+import javafx.scene.layout.Region;
 
 public class Controller {
 
@@ -42,6 +45,9 @@ public class Controller {
 
     @FXML
     private Button btnExit;
+
+    @FXML
+    private DatePicker dpBookingDate;
 
     @FXML
     private TableColumn<Booking, Integer> colBookingId;
@@ -236,29 +242,188 @@ public class Controller {
 
     @FXML
     void addAgentClicked(MouseEvent event) {
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+            String query = "INSERT INTO Agents (AgentId, AgtFirstName, AgtMiddleInitial, AgtLastName, AgtBusPhone, AgtEmail, AgtPosition, AgencyId) VALUES(?,?,?,?,?,?,?,?) ";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, tfAgentId.getText());
+            stmt.setString(2, tfAgentFirstName.getText());
+            stmt.setString(3, tfAgentMiddileInitial.getText());
+            stmt.setString(4, tfAgentLastName.getText());
+            stmt.setString(5, tfAgentPhone.getText());
+            stmt.setString(6, tfAgentEmail.getText());
+            stmt.setString(7, tfAgentPosition.getText());
+            stmt.setString(8, tfAgencyID.getText());
 
-    }
 
-    @FXML
-    void btnExit(MouseEvent event) {
-        System.exit(0);
+
+            if (stmt.executeUpdate() > 0)
+            {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Customer Inserted Successfully", ButtonType.CLOSE).showAndWait();
+            }
+            else
+            {
+                new Alert(Alert.AlertType.WARNING,
+                        "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
+            }
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
+
+
 
     }
 
     @FXML
     void addBookingClicked(MouseEvent event) {
 
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+            String query = "INSERT INTO Bookings (BookingId, BookingDate, BookingNo, TravelerCount, CustomerId, TripTypeId, PackageId) VALUES(?,?,?,?,?,?,?) ";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, tfBookingId.getText());
+            stmt.setString(2, dpBookingDate.getValue().toString());
+            stmt.setString(3, tfBookingNo.getText());
+            stmt.setString(4, tfTravelerCount.getText());
+            stmt.setString(5, tfCustomerIdBooking.getText());
+            stmt.setString(6, tfTripTypeId.getText());
+            stmt.setString(7, tfPackageId.getText());
+
+
+            if (stmt.executeUpdate() > 0)
+            {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Customer Inserted Successfully", ButtonType.CLOSE).showAndWait();
+            }
+            else
+            {
+                new Alert(Alert.AlertType.WARNING,
+                        "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
+            }
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
+
+
     }
 
 
     @FXML
     void addCustomerClicked(MouseEvent event) {
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+            String query = "INSERT INTO Customers (CustomerId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgencyId) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, tfCustomerId.getText());
+            stmt.setString(2, tfCustFirstName.getText());
+            stmt.setString(3, tfCustLastName.getText());
+            stmt.setString(4, tfCustAddress.getText());
+            stmt.setString(5, tfCustCity.getText());
+            stmt.setString(6, tfCustProvince.getText());
+            stmt.setString(7, tfCustPostalCode.getText());
+            stmt.setString(8, tfCustCountry.getText());
+            stmt.setString(9, tfCustHomePhone.getText());
+            stmt.setString(10, tfCustBusinessPhone.getText());
+            stmt.setString(11, tfCustEmail.getText());
+            stmt.setString(12, tfCustAgentId.getText());
 
+            if (stmt.executeUpdate() > 0)
+            {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Customer Inserted Successfully", ButtonType.CLOSE).showAndWait();
+            }
+            else
+            {
+                new Alert(Alert.AlertType.WARNING,
+                        "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
+            }
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
     }
 
 
     @FXML
-    void addProductClicked(MouseEvent event) {
+    void addProductClicked(MouseEvent event) throws SQLException {
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+            String query = "INSERT INTO Products (ProductId, ProdName) VALUES(?,?) ";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, tfProductId.getText());
+            stmt.setString(2, tfProductName.getText());
+            if (stmt.executeUpdate() > 0)
+            {
+
+                 Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                    "Product Inserted Successfully", ButtonType.CLOSE);
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                alert.showAndWait();
+
+            }
+            else
+            {
+                Alert alert = new Alert(Alert.AlertType.INFORMATION,
+                        "Product Insert Failed", ButtonType.CLOSE);
+                alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+                alert.showAndWait();
+            }
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+             Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
+    }
+
+    @FXML
+    void btnExit(MouseEvent event) {
+        System.exit(0);
 
     }
 
@@ -281,7 +446,7 @@ public class Controller {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                data.add(new Booking(rs.getInt(1), rs.getTimestamp(2), rs.getString(3), rs.getFloat(4), rs.getInt(5),
+                data.add(new Booking(rs.getInt(1), rs.getTimestamp(2), rs.getString(3), rs.getInt(4), rs.getInt(5),
                         rs.getString(6), rs.getInt(7)));
                 tblBookings.setItems(data);
             }
