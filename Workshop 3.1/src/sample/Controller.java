@@ -48,6 +48,9 @@ public class Controller {
     private Button btnExit;
 
     @FXML
+    private Button btnReloadPage;
+
+    @FXML
     private DatePicker dpBookingDate;
 
     @FXML
@@ -232,6 +235,45 @@ public class Controller {
 
     @FXML
     private TableView<Agent> tblAgents;
+
+    @FXML
+    void reloadPageClicked(MouseEvent event) throws SQLException {
+        tfAgentId.setText("");
+        tfAgentFirstName.setText("");
+        tfAgentMiddileInitial.setText("");
+        tfAgentLastName.setText("");
+        tfAgentPhone.setText("");
+        tfAgentEmail.setText("");
+        tfAgentPosition.setText("");
+        tfAgencyID.setText("");
+        tfBookingId.setText("");
+        tfBookingNo.setText("");
+        tfTravelerCount.setText("");
+        tfCustomerIdBooking.setText("");
+        tfTripTypeId.setText("");
+        tfPackageId.setText("");
+        tfCustomerId.setText("");
+        tfCustFirstName.setText("");
+        tfCustLastName.setText("");
+        tfCustAddress.setText("");
+        tfCustCity.setText("");
+        tfCustProvince.setText("");
+        tfCustPostalCode.setText("");
+        tfCustCountry.setText("");
+        tfCustHomePhone.setText("");
+        tfCustBusinessPhone.setText("");
+        tfCustEmail.setText("");
+        tfCustAgentId.setText("");
+        tfProductId.setText("");
+        tfProductName.setText("");
+        populateAgentTable();
+        populateProductTable();
+        populateBookingTable();
+        populateCustomerTable();
+
+
+
+    }
 
     @FXML
     void productsTableClicked(MouseEvent event) {

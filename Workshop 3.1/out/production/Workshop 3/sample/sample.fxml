@@ -350,7 +350,7 @@
           </Tab>
         </tabs>
       </TabPane>
-      <Button fx:id="btnExit" layoutX="502.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#btnExit" prefHeight="45.0" prefWidth="79.0" text="Exit">
+      <Button fx:id="btnExit" layoutX="384.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#btnExit" prefHeight="51.0" prefWidth="197.0" text="Exit">
          <font>
             <Font name="System Bold" size="24.0" />
          </font>
@@ -360,5 +360,10 @@
             <Font name="System Bold Italic" size="10.0" />
          </font>
       </Label>
+      <Button fx:id="btnReloadPage" layoutX="162.0" layoutY="679.0" mnemonicParsing="false" onMouseClicked="#reloadPageClicked" prefHeight="51.0" prefWidth="185.0" text="Reload Page">
+         <font>
+            <Font name="System Bold" size="24.0" />
+         </font>
+      </Button>
    </children>
 </AnchorPane>
