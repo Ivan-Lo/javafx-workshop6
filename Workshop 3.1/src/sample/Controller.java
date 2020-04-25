@@ -3,6 +3,7 @@ package sample;
 
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalDate;
 import java.util.Optional;
 import java.util.ResourceBundle;
 import java.util.logging.Logger;
@@ -164,9 +165,6 @@ public class Controller {
     private TextField tfBookingId;
 
     @FXML
-    private TextField tfBookingDate;
-
-    @FXML
     private TextField tfBookingNo;
 
     @FXML
@@ -269,6 +267,14 @@ public class Controller {
                 new Alert(Alert.AlertType.WARNING,
                         "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
             }
+            tfAgentId.setText("");
+            tfAgentFirstName.setText("");
+            tfAgentMiddileInitial.setText("");
+            tfAgentLastName.setText("");
+            tfAgentPhone.setText("");
+            tfAgentEmail.setText("");
+            tfAgentPosition.setText("");
+            tfAgencyID.setText("");
             conn.close();
         }
         catch (ClassNotFoundException ex) {
@@ -315,6 +321,12 @@ public class Controller {
                 new Alert(Alert.AlertType.WARNING,
                         "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
             }
+            tfBookingId.setText("");
+            tfBookingNo.setText("");
+            tfTravelerCount.setText("");
+            tfCustomerIdBooking.setText("");
+            tfTripTypeId.setText("");
+            tfPackageId.setText("");
             conn.close();
         }
         catch (ClassNotFoundException ex) {
@@ -339,7 +351,7 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
-            String query = "INSERT INTO Customers (CustomerId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgencyId) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ";
+            String query = "INSERT INTO Customers (CustomerId, CustFirstName, CustLastName, CustAddress, CustCity, CustProv, CustPostal, CustCountry, CustHomePhone, CustBusPhone, CustEmail, AgentId) VALUES(?,?,?,?,?,?,?,?,?,?,?,?) ";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, tfCustomerId.getText());
             stmt.setString(2, tfCustFirstName.getText());
@@ -364,6 +376,18 @@ public class Controller {
                 new Alert(Alert.AlertType.WARNING,
                         "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
             }
+            tfCustomerId.setText("");
+            tfCustFirstName.setText("");
+            tfCustLastName.setText("");
+            tfCustAddress.setText("");
+            tfCustCity.setText("");
+            tfCustProvince.setText("");
+           tfCustPostalCode.setText("");
+            tfCustCountry.setText("");
+            tfCustHomePhone.setText("");
+            tfCustBusinessPhone.setText("");
+            tfCustEmail.setText("");
+           tfCustAgentId.setText("");
             conn.close();
         }
         catch (ClassNotFoundException ex) {
@@ -406,6 +430,8 @@ public class Controller {
                 alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
                 alert.showAndWait();
             }
+            tfProductId.setText("");
+            tfProductName.setText("");
             conn.close();
         }
         catch (ClassNotFoundException ex) {
@@ -574,7 +600,6 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         assert btnAddProduct != null : "fx:id=\"btnAddProduct\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnAddBooking != null : "fx:id=\"btnAddBooking\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfBookingId != null : "fx:id=\"tfBookingId\" was not injected: check your FXML file 'sample.fxml'.";
-        assert tfBookingDate != null : "fx:id=\"tfBookingDate\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfBookingNo != null : "fx:id=\"tfBookingNo\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfTravelerCount != null : "fx:id=\"tfTravelerCount\" was not injected: check your FXML file 'sample.fxml'.";
         assert tfCustomerIdBooking != null : "fx:id=\"tfCustomerIdBooking\" was not injected: check your FXML file 'sample.fxml'.";
