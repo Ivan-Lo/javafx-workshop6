@@ -7,6 +7,7 @@
 <?import javafx.scene.control.TabPane?>
 <?import javafx.scene.control.TableColumn?>
 <?import javafx.scene.control.TableView?>
+<?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.text.Font?>
@@ -261,6 +262,28 @@
                                     </AnchorPane>
                                  </content>
                               </Tab>
+                              <Tab text="Packages">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <Label layoutX="53.0" layoutY="40.0" text="Package Name" />
+                                          <Label layoutX="62.0" layoutY="74.0" text="Start Date" />
+                                          <Label layoutX="64.0" layoutY="106.0" text="End Date" />
+                                          <Label layoutX="49.0" layoutY="136.0" text="Package Description" />
+                                          <Label layoutX="56.0" layoutY="353.0" text="Package Price" />
+                                          <Label layoutX="53.0" layoutY="393.0" text="Agent Commission" />
+                                          <Button fx:id="btnSubmit" layoutX="53.0" layoutY="461.0" mnemonicParsing="false" onAction="#SubmitClicked" onMouseClicked="#SubmitClicked" text="Submit" />
+                                          <Button fx:id="btnClear" layoutX="220.0" layoutY="461.0" mnemonicParsing="false" text="Clear" />
+                                          <TextField fx:id="pkgname" layoutX="207.0" layoutY="36.0" />
+                                          <TextField fx:id="pkgstart" layoutX="207.0" layoutY="70.0" />
+                                          <TextField fx:id="pkgend" layoutX="207.0" layoutY="102.0" />
+                                          <TextArea fx:id="pkgdesc" layoutX="201.0" layoutY="136.0" prefHeight="200.0" prefWidth="200.0" />
+                                          <TextField fx:id="pkgprice" layoutX="201.0" layoutY="349.0" />
+                                          <TextField fx:id="PkgCom" layoutX="201.0" layoutY="381.0" />
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
                           </tabs>
                         </TabPane>
                      </children></AnchorPane>
@@ -343,6 +366,25 @@
                                     </AnchorPane>
                               </content>
                             </Tab>
+                              <Tab text="Packages">
+                                <content>
+                                  <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0">
+                                       <children>
+                                          <TableView prefHeight="518.0" prefWidth="620.0">
+                                            <columns>
+                                              <TableColumn fx:id="pkgId" prefWidth="75.0" text="Package ID" />
+                                              <TableColumn fx:id="pkgName" prefWidth="122.4000244140625" text="Package Name" />
+                                                <TableColumn fx:id="pkgStart" prefWidth="86.39997863769531" text="Start Date" />
+                                                <TableColumn fx:id="pkgEnd" prefWidth="74.4000244140625" text="End Date" />
+                                                <TableColumn fx:id="pkgDesc" prefWidth="121.60003662109375" text="Description" />
+                                                <TableColumn fx:id="pkgPrice" prefWidth="72.0" text="Price" />
+                                                <TableColumn fx:id="pkgComm" prefWidth="64.0" text="Commission" />
+                                            </columns>
+                                          </TableView>
+                                       </children>
+                                    </AnchorPane>
+                                </content>
+                              </Tab>
                           </tabs>
                         </TabPane>
                      </children></AnchorPane>

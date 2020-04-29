@@ -237,6 +237,51 @@ public class Controller {
     private TableView<Agent> tblAgents;
 
     @FXML
+    private TextField pkgname;
+
+    @FXML
+    private TextField pkgstart;
+
+    @FXML
+    private TextField pkgend;
+
+    @FXML
+    private TextArea pkgdesc;
+
+    @FXML
+    private TextField pkgprice;
+
+    @FXML
+    private TextField PkgCom;
+
+    @FXML
+    private TableColumn<?, ?> pkgEnd;
+
+    @FXML
+    private TableColumn<?, ?> pkgDesc;
+
+    @FXML
+    private TableColumn<?, ?> pkgPrice;
+
+    @FXML
+    private TableColumn<?, ?> pkgComm;
+
+    @FXML
+    private TableColumn<?, ?> pkgId;
+
+    @FXML
+    private TableColumn<?, ?> pkgName;
+
+    @FXML
+    private TableColumn<?, ?> pkgStart;
+
+    @FXML
+    private Button btnSubmit;
+
+    @FXML
+    private Button btnClear;
+
+    @FXML
     void reloadPageClicked(MouseEvent event) throws SQLException {
         tfAgentId.setText("");
         tfAgentFirstName.setText("");
@@ -266,11 +311,17 @@ public class Controller {
         tfCustAgentId.setText("");
         tfProductId.setText("");
         tfProductName.setText("");
+        pkgname.setText("");
+        pkgstart.setText("");
+        pkgend.setText("");
+        pkgdesc.setText("");
+        pkgprice.setText("");
+        PkgCom.setText("");
         populateAgentTable();
         populateProductTable();
         populateBookingTable();
         populateCustomerTable();
-
+        populatePackageTable();
 
 
     }
@@ -332,6 +383,54 @@ public class Controller {
         }
 
 
+
+    }
+    @FXML
+    void SubmitClicked(MouseEvent event) {
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+            String query = "INSERT INTO Packages (PkgName, PkgStartDate, PkgEndDate, PkgDesc, PkgBasePrice, PkgCommission) VALUES(?,?,?,?,?,?) ";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, pkgname.getText());
+            stmt.setString(2, pkgstart.getText());
+            stmt.setString(3, pkgend.getText());
+            stmt.setString(4, pkgdesc.getText());
+            stmt.setString(5, pkgprice.getText());
+            stmt.setString(6, PkgCom.getText());
+
+
+
+            if (stmt.executeUpdate() > 0)
+            {
+                new Alert(Alert.AlertType.INFORMATION,
+                        "Customer Inserted Successfully", ButtonType.CLOSE).showAndWait();
+            }
+            else
+            {
+                new Alert(Alert.AlertType.WARNING,
+                        "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
+            }
+            pkgname.setText("");
+            pkgstart.setText("");
+            pkgend.setText("");
+            pkgdesc.setText("");
+            pkgprice.setText("");
+            PkgCom.setText("");
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
 
     }
 
@@ -618,6 +717,42 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         return data;
     }
 
+    private ObservableList<Customer> populatePackageTable() throws SQLException {
+        ObservableList<Customer> data;
+        data = FXCollections.observableArrayList();
+
+        customeridColumn.setCellValueFactory(new PropertyValueFactory<>("CustomerId"));
+        cfirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("CustFirstName"));
+        clastNameColumn.setCellValueFactory(new PropertyValueFactory<>("CustLastName"));
+        addressColumn.setCellValueFactory(new PropertyValueFactory<>("CustAddress"));
+        cityColumn.setCellValueFactory(new PropertyValueFactory<>("CustCity"));
+        provColumn.setCellValueFactory(new PropertyValueFactory<>("CustProv"));
+        countryColumn.setCellValueFactory(new PropertyValueFactory<>("CustPostal"));
+        homePhoneColumn.setCellValueFactory(new PropertyValueFactory<>("CustCountry"));
+        cbusPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("CustHomePhone"));
+        cemailColumn.setCellValueFactory(new PropertyValueFactory<>("CustBusPhone"));
+        countryColumn.setCellValueFactory(new PropertyValueFactory<>("CustEmail"));
+        agentIdColumn.setCellValueFactory(new PropertyValueFactory<>("AgentId"));
+        try {
+            String query = "select * from Packages";
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+
+            PreparedStatement pst = conn.prepareStatement(query);
+            rs = pst.executeQuery();
+
+            while (rs.next()) {
+                data.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
+                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12)));
+                ctableview.setItems(data);
+            }
+            pst.close();
+            rs.close();
+        } catch (SQLException ex) {
+            System.err.println("Error" + ex);
+        }
+        return data;
+    }
+
     private void connectDB() {
         // TODO Auto-generated method stub
         try {
@@ -705,11 +840,27 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         assert cemailColumn != null : "fx:id=\"emailColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert agentIdColumn != null : "fx:id=\"agentIdColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnExit != null : "fx:id=\"btnExit\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgname != null : "fx:id=\"pkgname\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgstart != null : "fx:id=\"pkgstart\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgend != null : "fx:id=\"pkgend\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgdesc != null : "fx:id=\"pkgdesc\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgprice != null : "fx:id=\"pkgprice\" was not injected: check your FXML file 'sample.fxml'.";
+        assert PkgCom != null : "fx:id=\"PkgCom\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgId != null : "fx:id=\"pkgId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgName != null : "fx:id=\"pkgName\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgStart != null : "fx:id=\"pkgStart\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgEnd != null : "fx:id=\"pkgEnd\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgDesc != null : "fx:id=\"pkgDesc\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgPrice != null : "fx:id=\"pkgPrice\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgComm != null : "fx:id=\"pkgComm\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnSubmit != null : "fx:id=\"btnSubmit\" was not injected: check your FXML file 'sample.fxml'.";
+        assert btnClear != null : "fx:id=\"btnClear\" was not injected: check your FXML file 'sample.fxml'.";
 
         populateAgentTable();
         populateProductTable();
         populateBookingTable();
         populateCustomerTable();
+        populatePackageTable();
 
     }
     }
