@@ -278,13 +278,13 @@
                                  <TableView fx:id="tblAgents" layoutX="141.0" layoutY="79.0" prefHeight="491.0" prefWidth="604.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                     <columns>
                                        <TableColumn fx:id="agentidColumn" prefWidth="62.400022864341736" text="Agent Id" />
-                                       <TableColumn fx:id="firstNameColumn" prefWidth="74.40001678466797" text="First Name" />
-                                       <TableColumn fx:id="middleInitialColumn" prefWidth="84.0" text="Middle Initial" />
-                                       <TableColumn fx:id="lastNameColumn" prefWidth="83.199951171875" text="Last Name" />
-                                       <TableColumn fx:id="busPhoneColumn" prefWidth="74.39996337890625" text="Phone" />
-                                       <TableColumn fx:id="emailColumn" prefWidth="80.800048828125" text="Email" />
-                                       <TableColumn fx:id="agtPositionColumn" minWidth="0.0" prefWidth="75.20004272460938" text="Position" />
-                                       <TableColumn fx:id="agencyIdColumn" prefWidth="68.79998779296875" text="AgencyId" />
+                                       <TableColumn fx:id="firstNameColumn" onEditCommit="#updateAgentFirstName" prefWidth="74.40001678466797" text="First Name" />
+                                       <TableColumn fx:id="middleInitialColumn" onEditCommit="#updateAgentMiddleInitial" prefWidth="84.0" text="Middle Initial" />
+                                       <TableColumn fx:id="lastNameColumn" onEditCommit="#updateAgentLastName" prefWidth="83.199951171875" text="Last Name" />
+                                       <TableColumn fx:id="busPhoneColumn" onEditCommit="#updateAgentBusPhone" prefWidth="74.39996337890625" text="Phone" />
+                                       <TableColumn fx:id="emailColumn" onEditCommit="#updateAgentEmail" prefWidth="80.800048828125" text="Email" />
+                                       <TableColumn fx:id="agtPositionColumn" minWidth="0.0" onEditCommit="#updateAgentPosition" prefWidth="75.20004272460938" text="Position" />
+                                       <TableColumn fx:id="agencyIdColumn" onEditCommit="#updateAgencyId" prefWidth="68.79998779296875" text="AgencyId" />
                                     </columns>
                                  </TableView>
                               </content>
@@ -335,8 +335,8 @@
                                        <children>
                                           <TableView fx:id="tblProducts" layoutX="102.0" layoutY="50.0" onMouseClicked="#productsTableClicked" prefHeight="340.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
-                                              <TableColumn fx:id="colProductId" prefWidth="75.0" text="Product Id" />
-                                              <TableColumn fx:id="colProdName" prefWidth="75.0" text="Product Name" />
+                                              <TableColumn fx:id="colProductId" onEditCommit="#updateProductId" prefWidth="75.0" text="Product Id" />
+                                              <TableColumn fx:id="colProdName" onEditCommit="#updateProductName" prefWidth="75.0" text="Product Name" />
                                             </columns>
                                           </TableView>
                                        </children>
