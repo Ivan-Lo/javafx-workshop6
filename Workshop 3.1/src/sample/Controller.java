@@ -230,7 +230,7 @@ public class Controller {
         // TODO Auto-generated method stub
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
             stmt = conn.createStatement();
         } catch (ClassNotFoundException e) {
             // TODO Auto-generated catch block
@@ -298,7 +298,7 @@ public class Controller {
         agencyIdColumn.setCellValueFactory(new PropertyValueFactory<>("AgencyId"));
         try{
             String query = "select * from Agents";
-            conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
 
             PreparedStatement pst = conn.prepareStatement(query);
             rs = pst.executeQuery();
@@ -314,7 +314,39 @@ public class Controller {
             System.err.println("Error" + ex);
         }
 
+        public void AddNewValues(int agentid,String agtFirstName,String AgtMiddleInitials,String AgtLastName,String AgtBusPhone, String AgtEmail, String AgtPosition, int AgencyId) throws SQLException
+        {
+            PreparedStatement preparedStatement=null;
 
-    }
-    }
+            String insertNewUserSQL = "INSERT INTO " + studentsTable + " VALUES (?, ?, ?, ?, ?, ?, ?)";
+            PreparedStatement pstmt = con.prepareStatement(insertNewUserSQL);
+            pstmt.setString(1, userName);
+    
+            pstmt.setString(7, email);
+            pstmt.executeUpdate();
+
+            ResultSet resultSet=null;
+            String sql = "INSERT INTO Agents (agtidColumn, firstNameColumn, lastNameColumn,lastname, email) VALUES (?, ?, ?,?, ?)";
+            try {
+                preparedStatement=conn.prepareStatement(sql);
+                preparedStatement.setInt(1, Agentid);
+                preparedStatement.setString(2, AgtFirstName);
+                preparedStatement.setString(3, AgtMiddleInitial);
+                preparedStatement.setString(4, AgtLastName);
+                preparedStatement.setString(5, AgtBusPhone);
+                preparedStatement.setString(6, AgtEmail);
+                preparedStatement.setString(7, AgtPosition);
+                preparedStatement.setInt(8, AgencyId);
+                resultSet=preparedStatement.executeQuery();
+
+
+                System.out.println("A new user was inserted successfully!");
+
+
+            } catch (Exception e) {
+                // TODO: handle exception
+                System.out.println("A new user was insertion failed!");
+            }
+        }
+}
 
