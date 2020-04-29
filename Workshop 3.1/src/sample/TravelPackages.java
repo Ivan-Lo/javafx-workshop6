@@ -5,14 +5,14 @@ import javafx.beans.property.SimpleIntegerProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.beans.property.StringProperty;
 
-public class Packages{
+public class TravelPackages{
     public int PackageId;
     public String PackageName;
     public String PackageStart;
     public String PackageEnd;
     public String PackageDesc;
     public String PackagePrice;
-    public Stirng PackageCommission;
+    public String PackageCommission;
 
     public int getPackageId() {
         return PackageId;
@@ -62,15 +62,15 @@ public class Packages{
         PackagePrice = packagePrice;
     }
 
-    public Stirng getPackageCommission() {
+    public String getPackageCommission() {
         return PackageCommission;
     }
 
-    public void setPackageCommission(Stirng packageCommission) {
+    public void setPackageCommission(String packageCommission) {
         PackageCommission = packageCommission;
     }
 
-    public Packages(int packageId, String packageName, String packageStart, String packageEnd, String packageDesc, String packagePrice, Stirng packageCommission) {
+    public TravelPackages(int packageId, String packageName, String packageStart, String packageEnd, String packageDesc, String packagePrice, String packageCommission) {
         PackageId = packageId;
         PackageName = packageName;
         PackageStart = packageStart;
