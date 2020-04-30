@@ -1,6 +1,6 @@
 package sample;
 
-class TravelPackages{
+public class Package{
     public int PackageId;
     public String PackageName;
     public String PackageStart;
@@ -62,16 +62,6 @@ class TravelPackages{
     }
 
     public void setPackageCommission(String packageCommission) {
-        PackageCommission = packageCommission;
-    }
-
-    public TravelPackages(int packageId, String packageName, String packageStart, String packageEnd, String packageDesc, String packagePrice, String packageCommission) {
-        PackageId = packageId;
-        PackageName = packageName;
-        PackageStart = packageStart;
-        PackageEnd = packageEnd;
-        PackageDesc = packageDesc;
-        PackagePrice = packagePrice;
         PackageCommission = packageCommission;
     }
 
