@@ -724,7 +724,7 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         ObservableList<Package> data;
         data = FXCollections.observableArrayList();
 
-        pkgIdColumn.setCellValueFactory(new PropertyValueFactory<>("PkgId"));
+        pkgIdColumn.setCellValueFactory(new PropertyValueFactory<>("PackageId"));
         pkgNameColumn.setCellValueFactory(new PropertyValueFactory<>("PkgName"));
         pkgStartColumn.setCellValueFactory(new PropertyValueFactory<>("PkgStartDate"));
         pkgEndColumn.setCellValueFactory(new PropertyValueFactory<>("PkgEndDate"));
