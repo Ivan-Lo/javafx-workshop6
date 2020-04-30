@@ -1,6 +1,11 @@
 package sample;
 
-class TravelPackages{
+import javafx.beans.property.IntegerProperty;
+import javafx.beans.property.SimpleIntegerProperty;
+import javafx.beans.property.SimpleStringProperty;
+import javafx.beans.property.StringProperty;
+
+public class TravelPackages{
     public int PackageId;
     public String PackageName;
     public String PackageStart;
