@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Detail</title>
+<script src="jquery.js"></script>
+<script src="ajax.js"></script>
+</head>
+<body onload="loadAllCustomers()">
+	Customers: <select id="customers" onchange="loadCustomer(this.value)">
+	<option value="">Select a customer from the list</option>
+	</select>
+	<div id="customerDiv">Customer will display here</div>
+</body>
+</html>

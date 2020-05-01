@@ -1,0 +1,33 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="ISO-8859-1">
+<title>Customer Update</title>
+<script src="jquery.js"></script>
+<script src="ajax.js"></script>
+</head>
+<body onload="loadAllCustomers()">
+	<h2>Select a Customer, enter your changes and submit</h2>
+	Customers: <select id="customers" onchange="loadCustomerForm(this.value)">
+	<option value="">Select a Customer from the list</option>
+	</select><br />
+	<div id="myFields">
+		Customer Id:<input type="text" id="customerId" disabled="disabled" /><br />
+		First Name:<input type="text" id="custFirstName" /><br />
+		Last Name:<input type="text" id="custLastName" /><br />
+		Address:<input type="text" id="custAddress" /><br />
+		City:<input type="text" id="custCity" /><br />
+		Prov:<input type="text" id="custProv" /><br />
+		Postal:<input type="text" id="custPostal" /><br />
+		Country:<input type="text" id="custCountry" /><br />
+		Home Phone:<input type="text" id="custHomePhone" /><br />
+		Bus Phone:<input type="text" id="custBusPhone" /><br />
+		Email:<input type="text" id="custEmail" /><br />
+		Agent Id:<input type="text" id="agentId" /><br />
+	</div>
+	<button onclick="updateCustomer()">Update</button>
+	
+	<div id="message"></div>
+	<div id="error"></div>
+</body>
+</html>
