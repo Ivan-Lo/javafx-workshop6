@@ -409,12 +409,12 @@ public class Controller {
             if (stmt.executeUpdate() > 0)
             {
                 new Alert(Alert.AlertType.INFORMATION,
-                        "Customer Inserted Successfully", ButtonType.CLOSE).showAndWait();
+                        "Packages Inserted Successfully", ButtonType.CLOSE).showAndWait();
             }
             else
             {
                 new Alert(Alert.AlertType.WARNING,
-                        "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
+                        "Packages Insert Failed", ButtonType.CLOSE).showAndWait();
             }
             tfPackageId.setText("");
             tfPackageName.setText("");
@@ -733,7 +733,7 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         pkgCommColumn.setCellValueFactory(new PropertyValueFactory<>("PkgAgencyCommission"));
 
         try {
-            String query = "select * from packages";
+            String query = "select * from Packages";
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
 
             PreparedStatement pst = conn.prepareStatement(query);
