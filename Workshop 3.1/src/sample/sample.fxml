@@ -373,14 +373,13 @@
                                        <children>
                                           <TableView fx:id="tblPackages" layoutY="1.0" prefHeight="515.0" prefWidth="612.0">
                                             <columns>
-                                              <TableColumn fx:id="pkgIdColumn" prefWidth="75.0" text="Package ID" />
-                                              <TableColumn fx:id="pkgNameColumn" prefWidth="92.800048828125" text="PackageName" />
-                                                <TableColumn fx:id="pkgStartColumn" prefWidth="83.20001220703125" text="Start Date" />
-                                                <TableColumn fx:id="pkgEndColumn" prefWidth="79.99995422363281" text="End Date" />
-                                                <TableColumn fx:id="pkgDescColumn" prefWidth="120.79998779296875" text="Description" />
-                                                <TableColumn minWidth="0.0" prefWidth="0.0" text="C2" />
-                                                <TableColumn fx:id="pkgPriceColumn" prefWidth="96.0" text="Price" />
-                                                <TableColumn fx:id="pkgCommColumn" prefWidth="61.5999755859375" text="Commission" />
+                                              <TableColumn fx:id="pkgIdColumn" prefWidth="68.80001908540726" text="Package ID" />
+                                              <TableColumn fx:id="pkgNameColumn" minWidth="6.103515625E-5" prefWidth="87.19994735717773" text="PackageName" />
+                                                <TableColumn fx:id="pkgStartColumn" prefWidth="108.80006408691406" text="Start Date" />
+                                                <TableColumn fx:id="pkgEndColumn" prefWidth="68.79998779296875" text="End Date" />
+                                                <TableColumn fx:id="pkgDescColumn" prefWidth="86.4000244140625" text="Description" />
+                                                <TableColumn fx:id="pkgPriceColumn" prefWidth="89.5999755859375" text="Price" />
+                                                <TableColumn fx:id="pkgCommColumn" prefWidth="100.0" text="Commission" />
                                             </columns>
                                           </TableView>
                                        </children>

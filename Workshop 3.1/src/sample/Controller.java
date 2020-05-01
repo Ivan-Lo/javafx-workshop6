@@ -733,7 +733,7 @@ private ObservableList<Agent> populateAgentTable() throws SQLException {
         pkgCommColumn.setCellValueFactory(new PropertyValueFactory<>("PkgAgencyCommission"));
 
         try {
-            String query = "select * from packages";
+            String query = "select * from Packages";
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
 
             PreparedStatement pst = conn.prepareStatement(query);
