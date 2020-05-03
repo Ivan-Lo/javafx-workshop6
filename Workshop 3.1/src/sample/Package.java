@@ -1,19 +1,32 @@
 package sample;
 
-public class Package{
-    public int PackageId;
-    public String PackageName;
-    public String PackageStart;
-    public String PackageEnd;
-    public String PackageDesc;
-    public String PackagePrice;
-    public String PackageCommission;
+import java.math.BigDecimal;
+import java.sql.Timestamp;
 
-    public int getPackageId() {
+public class Package{
+    public Integer PackageId;
+    public String PackageName;
+    public Timestamp PackageStart;
+    public Timestamp PackageEnd;
+    public String PackageDesc;
+    public BigDecimal PackagePrice;
+    public BigDecimal PackageCommission;
+
+    public Package(Integer packageId, String packageName, Timestamp packageStart, Timestamp packageEnd, String packageDesc, BigDecimal packagePrice, BigDecimal packageCommission) {
+        PackageId = packageId;
+        PackageName = packageName;
+        PackageStart = packageStart;
+        PackageEnd = packageEnd;
+        PackageDesc = packageDesc;
+        PackagePrice = packagePrice;
+        PackageCommission = packageCommission;
+    }
+
+    public Integer getPackageId() {
         return PackageId;
     }
 
-    public void setPackageId(int packageId) {
+    public void setPackageId(Integer packageId) {
         PackageId = packageId;
     }
 
@@ -25,19 +38,19 @@ public class Package{
         PackageName = packageName;
     }
 
-    public String getPackageStart() {
+    public Timestamp getPackageStart() {
         return PackageStart;
     }
 
-    public void setPackageStart(String packageStart) {
+    public void setPackageStart(Timestamp packageStart) {
         PackageStart = packageStart;
     }
 
-    public String getPackageEnd() {
+    public Timestamp getPackageEnd() {
         return PackageEnd;
     }
 
-    public void setPackageEnd(String packageEnd) {
+    public void setPackageEnd(Timestamp packageEnd) {
         PackageEnd = packageEnd;
     }
 
@@ -49,32 +62,19 @@ public class Package{
         PackageDesc = packageDesc;
     }
 
-    public String getPackagePrice() {
+    public BigDecimal getPackagePrice() {
         return PackagePrice;
     }
 
-    public void setPackagePrice(String packagePrice) {
+    public void setPackagePrice(BigDecimal packagePrice) {
         PackagePrice = packagePrice;
     }
 
-    public String getPackageCommission() {
+    public BigDecimal getPackageCommission() {
         return PackageCommission;
     }
 
-    public void setPackageCommission(String packageCommission) {
+    public void setPackageCommission(BigDecimal packageCommission) {
         PackageCommission = packageCommission;
-    }
-
-    @Override
-    public String toString() {
-        return "Packages{" +
-                "PackageId=" + PackageId +
-                ", PackageName='" + PackageName + '\'' +
-                ", PackageStart='" + PackageStart + '\'' +
-                ", PackageEnd='" + PackageEnd + '\'' +
-                ", PackageDesc='" + PackageDesc + '\'' +
-                ", PackagePrice='" + PackagePrice + '\'' +
-                ", PackageCommission=" + PackageCommission +
-                '}';
     }
 }

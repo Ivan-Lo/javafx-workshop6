@@ -1,12 +1,10 @@
 package sample;
 
 
+import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
-import java.time.LocalDate;
-import java.util.Optional;
 import java.util.ResourceBundle;
-import java.util.logging.Logger;
 
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
@@ -53,6 +51,12 @@ public class Controller {
 
     @FXML
     private Button btnReloadPage;
+
+    @FXML
+    private Button btnSubmit;
+
+    @FXML
+    private Button btnClear;
 
     @FXML
     private DatePicker dpBookingDate;
@@ -145,6 +149,42 @@ public class Controller {
     private TableColumn<Customer, Integer> agentIdColumn;
 
     @FXML
+    private TableColumn<Package, Timestamp> pkgEndColumn;
+
+    @FXML
+    private TableColumn<Package, String> pkgDescColumn;
+
+    @FXML
+    private TableColumn<Package, BigDecimal> pkgPriceColumn;
+
+    @FXML
+    private TableColumn<Package, BigDecimal> pkgCommColumn;
+
+    @FXML
+    private TableColumn<Package, Integer> pkgIdColumn;
+
+    @FXML
+    private TableColumn<Package, String> pkgNameColumn;
+
+    @FXML
+    private TableColumn<Package, Timestamp> pkgStartColumn;
+
+    @FXML
+    private TableView<Booking> tblBookings;
+
+    @FXML
+    private TableView<Customer> ctableview;
+
+    @FXML
+    private TableView<Product> tblProducts;
+
+    @FXML
+    private TableView<Agent> tblAgents;
+
+    @FXML
+    private TableView<Package> tblPackages;
+
+    @FXML
     private TextField tfAgentId;
 
     @FXML
@@ -229,61 +269,28 @@ public class Controller {
     private TextField tfProductName;
 
     @FXML
-    private TableView<Booking> tblBookings;
+    private TextField tfPackageIdPackage;
 
     @FXML
-    private TableView<Customer> ctableview;
+    private TextField tfPackageName;
 
     @FXML
-    private TableView<Product> tblProducts;
+    private DatePicker dpPkgStart;
 
     @FXML
-    private TableView<Agent> tblAgents;
+    private DatePicker dpPkgEnd;
 
     @FXML
-    private TextField pkgname;
+    private TextArea tfPackageDesc;
 
     @FXML
-    private TextField pkgstart;
+    private TextField tfPackagePrice;
 
     @FXML
-    private TextField pkgend;
+    private TextField tfPackageComm;
 
-    @FXML
-    private TextArea pkgdesc;
-
-    @FXML
-    private TextField pkgprice;
-
-    @FXML
-    private TextField PkgCom;
-
-    @FXML
-    private TableColumn<?, ?> pkgEnd;
-
-    @FXML
-    private TableColumn<?, ?> pkgDesc;
-
-    @FXML
-    private TableColumn<?, ?> pkgPrice;
-
-    @FXML
-    private TableColumn<?, ?> pkgComm;
-
-    @FXML
-    private TableColumn<?, ?> pkgId;
-
-    @FXML
-    private TableColumn<?, ?> pkgName;
-
-    @FXML
-    private TableColumn<?, ?> pkgStart;
-
-    @FXML
-    private Button btnSubmit;
-
-    @FXML
-    private Button btnClear;
+    public Controller() {
+    }
 
     @FXML
     void reloadPageClicked(MouseEvent event) throws SQLException {
@@ -315,12 +322,10 @@ public class Controller {
         tfCustAgentId.setText("");
         tfProductId.setText("");
         tfProductName.setText("");
-        pkgname.setText("");
-        pkgstart.setText("");
-        pkgend.setText("");
-        pkgdesc.setText("");
-        pkgprice.setText("");
-        PkgCom.setText("");
+        tfPackageName.setText("");
+        tfPackageDesc.setText("");
+        tfPackagePrice.setText("");
+        tfPackageComm.setText("");
         populateAgentTable();
         populateProductTable();
         populateBookingTable();
@@ -672,33 +677,31 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
-            String query = "INSERT INTO Packages (PkgName, PkgStartDate, PkgEndDate, PkgDesc, PkgBasePrice, PkgCommission) VALUES(?,?,?,?,?,?) ";
+            String query = "INSERT INTO Packages (PackageId, PkgName, PkgStartDate, PkgEndDate, PkgDesc, PkgBasePrice, PkgCommission) VALUES(?,?,?,?,?,?,?) ";
             PreparedStatement stmt = conn.prepareStatement(query);
-            stmt.setString(1, pkgname.getText());
-            stmt.setString(2, pkgstart.getText());
-            stmt.setString(3, pkgend.getText());
-            stmt.setString(4, pkgdesc.getText());
-            stmt.setString(5, pkgprice.getText());
-            stmt.setString(6, PkgCom.getText());
-
-
+            stmt.setString(1, tfPackageIdPackage.getText());
+            stmt.setString(2, tfPackageName.getText());
+            stmt.setString(3, dpPkgStart.getValue().toString());
+            stmt.setString(4, dpPkgEnd.getValue().toString());
+            stmt.setString(5, tfPackageDesc.getText());
+            stmt.setString(6, tfPackagePrice.getText());
+            stmt.setString(7, tfPackageComm.getText());
 
             if (stmt.executeUpdate() > 0)
             {
                 new Alert(Alert.AlertType.INFORMATION,
-                        "Customer Inserted Successfully", ButtonType.CLOSE).showAndWait();
+                        "Packages Inserted Successfully", ButtonType.CLOSE).showAndWait();
             }
             else
             {
                 new Alert(Alert.AlertType.WARNING,
-                        "Customer Insert Failed", ButtonType.CLOSE).showAndWait();
+                        "Packages Insert Failed", ButtonType.CLOSE).showAndWait();
             }
-            pkgname.setText("");
-            pkgstart.setText("");
-            pkgend.setText("");
-            pkgdesc.setText("");
-            pkgprice.setText("");
-            PkgCom.setText("");
+            tfPackageId.setText("");
+            tfPackageName.setText("");
+            tfPackageDesc.setText("");
+            tfPackagePrice.setText("");
+            tfPackageComm.setText("");
             conn.close();
         }
         catch (ClassNotFoundException ex) {
@@ -999,22 +1002,18 @@ public class Controller {
         return data;
     }
 
-    private ObservableList<Customer> populatePackageTable() throws SQLException {
-        ObservableList<Customer> data;
+    private ObservableList<Package> populatePackageTable() throws SQLException {
+        ObservableList<Package> data;
         data = FXCollections.observableArrayList();
 
-        customeridColumn.setCellValueFactory(new PropertyValueFactory<>("CustomerId"));
-        cfirstNameColumn.setCellValueFactory(new PropertyValueFactory<>("CustFirstName"));
-        clastNameColumn.setCellValueFactory(new PropertyValueFactory<>("CustLastName"));
-        addressColumn.setCellValueFactory(new PropertyValueFactory<>("CustAddress"));
-        cityColumn.setCellValueFactory(new PropertyValueFactory<>("CustCity"));
-        provColumn.setCellValueFactory(new PropertyValueFactory<>("CustProv"));
-        countryColumn.setCellValueFactory(new PropertyValueFactory<>("CustPostal"));
-        homePhoneColumn.setCellValueFactory(new PropertyValueFactory<>("CustCountry"));
-        cbusPhoneColumn.setCellValueFactory(new PropertyValueFactory<>("CustHomePhone"));
-        cemailColumn.setCellValueFactory(new PropertyValueFactory<>("CustBusPhone"));
-        countryColumn.setCellValueFactory(new PropertyValueFactory<>("CustEmail"));
-        agentIdColumn.setCellValueFactory(new PropertyValueFactory<>("AgentId"));
+        pkgIdColumn.setCellValueFactory(new PropertyValueFactory<>("PackageId"));
+        pkgNameColumn.setCellValueFactory(new PropertyValueFactory<>("PkgName"));
+        pkgStartColumn.setCellValueFactory(new PropertyValueFactory<>("PkgStartDate"));
+        pkgEndColumn.setCellValueFactory(new PropertyValueFactory<>("PkgEndDate"));
+        pkgDescColumn.setCellValueFactory(new PropertyValueFactory<>("PkgDesc"));
+        pkgPriceColumn.setCellValueFactory(new PropertyValueFactory<>("PkgBasePrice"));
+        pkgCommColumn.setCellValueFactory(new PropertyValueFactory<>("PkgAgencyCommission"));
+
         try {
             String query = "select * from Packages";
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3306/travelexperts", "root", "");
@@ -1023,9 +1022,10 @@ public class Controller {
             rs = pst.executeQuery();
 
             while (rs.next()) {
-                data.add(new Customer(rs.getInt(1), rs.getString(2), rs.getString(3), rs.getString(4), rs.getString(5),
-                        rs.getString(6), rs.getString(7), rs.getString(8), rs.getString(9), rs.getString(10), rs.getString(11), rs.getInt(12)));
-                ctableview.setItems(data);
+                data.add(new Package(rs.getInt(1), rs.getString(2), rs.getTimestamp(3), rs.getTimestamp(4), rs.getString(5),
+                        rs.getBigDecimal(6), rs.getBigDecimal(7)));
+
+            tblPackages.setItems(data);
             }
             pst.close();
             rs.close();
@@ -1120,21 +1120,30 @@ public class Controller {
         assert cemailColumn != null : "fx:id=\"emailColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert agentIdColumn != null : "fx:id=\"agentIdColumn\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnExit != null : "fx:id=\"btnExit\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgname != null : "fx:id=\"pkgname\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgstart != null : "fx:id=\"pkgstart\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgend != null : "fx:id=\"pkgend\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgdesc != null : "fx:id=\"pkgdesc\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgprice != null : "fx:id=\"pkgprice\" was not injected: check your FXML file 'sample.fxml'.";
-        assert PkgCom != null : "fx:id=\"PkgCom\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgId != null : "fx:id=\"pkgId\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgName != null : "fx:id=\"pkgName\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgStart != null : "fx:id=\"pkgStart\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgEnd != null : "fx:id=\"pkgEnd\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgDesc != null : "fx:id=\"pkgDesc\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgPrice != null : "fx:id=\"pkgPrice\" was not injected: check your FXML file 'sample.fxml'.";
-        assert pkgComm != null : "fx:id=\"pkgComm\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfPackageName != null : "fx:id=\"tfPackageName\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfPackageDesc != null : "fx:id=\"tfPackageDesc\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfPackagePrice != null : "fx:id=\"tfPackagePrice\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfPackageComm != null : "fx:id=\"tfPackageComm\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgIdColumn != null : "fx:id=\"pkgId\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgNameColumn != null : "fx:id=\"pkgName\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgStartColumn != null : "fx:id=\"pkgStart\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgEndColumn != null : "fx:id=\"pkgEnd\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgDescColumn != null : "fx:id=\"pkgDesc\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgPriceColumn != null : "fx:id=\"pkgPrice\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgCommColumn != null : "fx:id=\"pkgComm\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnSubmit != null : "fx:id=\"btnSubmit\" was not injected: check your FXML file 'sample.fxml'.";
         assert btnClear != null : "fx:id=\"btnClear\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tblPackages != null : "fx:id=\"tblPackages\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgIdColumn != null : "fx:id=\"pkgIdColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgNameColumn != null : "fx:id=\"pkgNameColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgStartColumn != null : "fx:id=\"pkgStartColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgEndColumn != null : "fx:id=\"pkgEndColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgDescColumn != null : "fx:id=\"pkgDescColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgPriceColumn != null : "fx:id=\"pkgPriceColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert pkgCommColumn != null : "fx:id=\"pkgCommColumn\" was not injected: check your FXML file 'sample.fxml'.";
+        assert tfPackageIdPackage != null : "fx:id=\"tfPackageIdPackage\" was not injected: check your FXML file 'sample.fxml'.";
+        assert dpPkgEnd != null : "fx:id=\"dpPkgEnd\" was not injected: check your FXML file 'sample.fxml'.";
+        assert dpPkgStart != null : "fx:id=\"dpPkgStart\" was not injected: check your FXML file 'sample.fxml'.";
 
         populateAgentTable();
         populateProductTable();
