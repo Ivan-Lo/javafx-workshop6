@@ -13,6 +13,8 @@ public class Main extends Application {
         Parent root = FXMLLoader.load(getClass().getResource("sample.fxml"));
         primaryStage.setTitle("Travel Experts Add/Edit");
         primaryStage.setScene(new Scene(root, 700, 740));
+        primaryStage.setHeight(800);
+        primaryStage.setWidth(800);
         primaryStage.show();
 
 
