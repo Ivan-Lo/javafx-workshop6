@@ -16,7 +16,7 @@ public class Agent {
     private final StringProperty AgtPosition;
     private final IntegerProperty AgencyId;
 
-    public Agent(int agentId, String agtFirstName, String agtMiddleInitial, String agtLastName, String agtBusPhone, String agtEmail, String agtPosition, int agencyId) {
+    public Agent(int agentId, String agtFirstName, String agtMiddleInitial, String agtLastName, String agtBusPhone, String agtEmail, String agtPosition, Integer agencyId) {
 
         this.AgentId = new SimpleIntegerProperty(agentId);
         this.AgtFirstName = new SimpleStringProperty(agtFirstName);
@@ -37,7 +37,7 @@ public class Agent {
     public String getAgtBusPhone(){return AgtBusPhone.get();}
     public String getAgtEmail(){return AgtEmail.get();}
     public String getAgtPosition(){return AgtPosition.get();}
-    public int getAgencyId(){return AgencyId.get();}
+    public Integer getAgencyId(){return AgencyId.get();}
 
     //Setters
     public void setAgentId(int value){

@@ -5,21 +5,22 @@ import java.sql.Timestamp;
 
 public class Package{
     public Integer PackageId;
-    public String PackageName;
-    public Timestamp PackageStart;
-    public Timestamp PackageEnd;
-    public String PackageDesc;
-    public BigDecimal PackagePrice;
-    public BigDecimal PackageCommission;
+    public String PkgName;
+    public Timestamp PkgStartDate;
+   public Timestamp PkgEndDate;
+   public String PkgDesc;
+    public BigDecimal PkgBasePrice;
+   // public BigDecimal PackageCommission;
+    public BigDecimal PkgAgencyCommission;
 
     public Package(Integer packageId, String packageName, Timestamp packageStart, Timestamp packageEnd, String packageDesc, BigDecimal packagePrice, BigDecimal packageCommission) {
         PackageId = packageId;
-        PackageName = packageName;
-        PackageStart = packageStart;
-        PackageEnd = packageEnd;
-        PackageDesc = packageDesc;
-        PackagePrice = packagePrice;
-        PackageCommission = packageCommission;
+        PkgName = packageName;
+        PkgStartDate= packageStart;
+        PkgEndDate = packageEnd;
+        PkgDesc = packageDesc;
+        PkgBasePrice = packagePrice;
+        PkgAgencyCommission = packageCommission;
     }
 
     public Integer getPackageId() {
@@ -30,51 +31,51 @@ public class Package{
         PackageId = packageId;
     }
 
-    public String getPackageName() {
-        return PackageName;
+    public String getPkgName() {
+        return PkgName;
     }
 
-    public void setPackageName(String packageName) {
-        PackageName = packageName;
+    public void setPkgName(String packageName) {
+        PkgName = packageName;
     }
 
-    public Timestamp getPackageStart() {
-        return PackageStart;
+    public Timestamp getPkgStartDate() {
+        return PkgStartDate;
     }
 
-    public void setPackageStart(Timestamp packageStart) {
-        PackageStart = packageStart;
+    public void setPkgStartDate(Timestamp packageStart) {
+        PkgStartDate = packageStart;
     }
 
-    public Timestamp getPackageEnd() {
-        return PackageEnd;
+    public Timestamp getPkgEndDate() {
+        return PkgEndDate;
     }
 
-    public void setPackageEnd(Timestamp packageEnd) {
-        PackageEnd = packageEnd;
+    public void setPkgEndDate(Timestamp packageEnd) {
+        PkgEndDate = packageEnd;
     }
 
-    public String getPackageDesc() {
-        return PackageDesc;
+    public String getPkgDesc() {
+        return PkgDesc;
     }
 
-    public void setPackageDesc(String packageDesc) {
-        PackageDesc = packageDesc;
+    public void setPkgDesc(String packageDesc) {
+        PkgDesc = packageDesc;
     }
 
-    public BigDecimal getPackagePrice() {
-        return PackagePrice;
+    public BigDecimal getPkgBasePrice() {
+        return PkgBasePrice;
     }
 
-    public void setPackagePrice(BigDecimal packagePrice) {
-        PackagePrice = packagePrice;
+    public void setPkgBasePrice(BigDecimal packagePrice) {
+        PkgBasePrice = packagePrice;
     }
 
-    public BigDecimal getPackageCommission() {
-        return PackageCommission;
+    public BigDecimal getPkgAgencyCommission() {
+        return PkgAgencyCommission;
     }
 
-    public void setPackageCommission(BigDecimal packageCommission) {
-        PackageCommission = packageCommission;
+    public void setPkgAgencyCommission(BigDecimal packageCommission) {
+        PkgAgencyCommission = packageCommission;
     }
 }
