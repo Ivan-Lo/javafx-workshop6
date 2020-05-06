@@ -1,0 +1,2 @@
+rootProject.name='Workshop8wtabs'
+include ':app'
