@@ -5,6 +5,7 @@ import java.awt.print.Book;
 import java.math.BigDecimal;
 import java.net.URL;
 import java.sql.*;
+import java.time.LocalTime;
 import java.util.ResourceBundle;
 import java.util.Timer;
 
@@ -17,9 +18,8 @@ import javafx.scene.control.cell.TextFieldTableCell;
 import javafx.scene.control.cell.TextFieldTreeTableCell;
 import javafx.scene.input.MouseEvent;
 import javafx.scene.layout.Region;
-import javafx.util.converter.IntegerStringConverter;
-import javafx.util.converter.NumberStringConverter;
-import javafx.util.converter.TimeStringConverter;
+import javafx.util.StringConverter;
+import javafx.util.converter.*;
 
 public class Controller {
 
@@ -674,7 +674,7 @@ public class Controller {
 
     }
 
-    @FXML
+   @FXML
     private void updateCustomerId (TableColumn.CellEditEvent event) {
         Customer customerSelected = ctableview.getSelectionModel().getSelectedItem();
 
@@ -682,7 +682,7 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
-            String query = "UPDATE Customer SET  = CustomerId? WHERE CustomerId = ?";
+            String query = "UPDATE Customers SET  = CustomerId=? WHERE CustomerId = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, event.getNewValue().toString());
             stmt.setInt(2, customerSelected.getCustomerId());
@@ -713,7 +713,7 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
-            String query = "UPDATE Customer SET  = CustFirstName? WHERE CustomerId = ?";
+            String query = "UPDATE Customers SET CustFirstName = ? WHERE CustomerId = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, event.getNewValue().toString());
             stmt.setInt(2, customerSelected.getCustomerId());
@@ -744,7 +744,7 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
-            String query = "UPDATE Customer SET  = CustLastName? WHERE CustomerId = ?";
+            String query = "UPDATE customers SET  CustLastName = ? WHERE CustomerId = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, event.getNewValue().toString());
             stmt.setInt(2, customerSelected.getCustomerId());
@@ -775,7 +775,7 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
-            String query = "UPDATE Customer SET  = CustAddress? WHERE CustomerId = ?";
+            String query = "UPDATE Customers SET   CustAddress=? WHERE CustomerId = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, event.getNewValue().toString());
             stmt.setInt(2, customerSelected.getCustomerId());
@@ -806,7 +806,7 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
-            String query = "UPDATE Customer SET  = CustCity? WHERE CustomerId = ?";
+            String query = "UPDATE Customers SET  CustCity=? WHERE CustomerId = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, event.getNewValue().toString());
             stmt.setInt(2, customerSelected.getCustomerId());
@@ -837,7 +837,7 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
-            String query = "UPDATE Customer SET  = CustProv? WHERE CustomerId = ?";
+            String query = "UPDATE Customers SET  CustProv=? WHERE CustomerId = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, event.getNewValue().toString());
             stmt.setInt(2, customerSelected.getCustomerId());
@@ -868,10 +868,165 @@ public class Controller {
         {
             Class.forName("com.mysql.cj.jdbc.Driver");
             conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
-            String query = "UPDATE Customer SET  = CustPostal? WHERE CustomerId = ?";
+            String query = "UPDATE Customers SET CustPostal=? WHERE CustomerId = ?";
             PreparedStatement stmt = conn.prepareStatement(query);
             stmt.setString(1, event.getNewValue().toString());
             stmt.setInt(2, customerSelected.getCustomerId());
+
+            stmt.executeUpdate();
+
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    private void updateBookingDate (TableColumn.CellEditEvent event) {
+        Booking BookingSelected = tblBookings.getSelectionModel().getSelectedItem();
+
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
+            String query = "UPDATE Bookings SET  BookingDate=? WHERE  BookingId =?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, event.getNewValue().toString());
+            stmt.setInt(2, BookingSelected.getBookingId());
+
+            stmt.executeUpdate();
+
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    private void updateBookingNumber (TableColumn.CellEditEvent event) {
+        Booking BookingSelected = tblBookings.getSelectionModel().getSelectedItem();
+
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
+            String query = "UPDATE Bookings SET  BookingNo=? WHERE  BookingId =?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, event.getNewValue().toString());
+            stmt.setInt(2, BookingSelected.getBookingId());
+
+            stmt.executeUpdate();
+
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    private void updateTravellerCount(TableColumn.CellEditEvent event) {
+        Booking BookingSelected = tblBookings.getSelectionModel().getSelectedItem();
+
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
+            String query = "UPDATE Bookings SET  BookingDate=? WHERE  BookingId =?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, event.getNewValue().toString());
+            stmt.setInt(2, BookingSelected.getBookingId());
+
+            stmt.executeUpdate();
+
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    private void updateTripTypeId (TableColumn.CellEditEvent event) {
+        Booking BookingSelected = tblBookings.getSelectionModel().getSelectedItem();
+
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
+            String query = "UPDATE Bookings SET  TripTypeId=? WHERE  BookingId =?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, event.getNewValue().toString());
+            stmt.setInt(2, BookingSelected.getBookingId());
+
+            stmt.executeUpdate();
+
+            conn.close();
+        }
+        catch (ClassNotFoundException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "Driver class not found: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        } catch (SQLException ex) {
+            Alert alert = new Alert(Alert.AlertType.ERROR,
+                    "An SQL Exception occurred: " + ex.getMessage(), ButtonType.OK);
+            alert.getDialogPane().setMinHeight(Region.USE_PREF_SIZE);
+            alert.showAndWait();
+        }
+
+    }
+
+    @FXML
+    private void updatePackageId(TableColumn.CellEditEvent event) {
+        Package PackageSelected = tblPackages.getSelectionModel().getSelectedItem();
+
+        try
+        {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            conn = DriverManager.getConnection("jdbc:mysql://localhost:3308/travelexperts", "root", "");
+            String query = "UPDATE Bookings SET PackageId=? WHERE  PackageId =?";
+            PreparedStatement stmt = conn.prepareStatement(query);
+            stmt.setString(1, event.getNewValue().toString());
+            stmt.setInt(2, PackageSelected.getPackageId());
 
             stmt.executeUpdate();
 
@@ -1417,24 +1572,43 @@ public class Controller {
         postalColumn.setCellFactory(TextFieldTableCell.forTableColumn());
 
 
-       /* colBookingId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("CustFirstName"));
-        colBookingDate.setCellValueFactory(new PropertyValueFactory<Booking, Timestamp>("CustLastName"));
-        colBookingNumber.setCellValueFactory(new PropertyValueFactory<Booking, String>("CustAddress"));
-        colTravelerCount.setCellValueFactory(new PropertyValueFactory<Booking, Float>("CustAddress"));
-        colCustomerId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("CustProv"));
-        colTripTypeId.setCellValueFactory(new PropertyValueFactory<Booking, String>("CustPostal"));
-        colPackageId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("CustPostal"));
+        colBookingId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("BookingId"));
+        colBookingDate.setCellValueFactory(new PropertyValueFactory<Booking, Timestamp>("BookingDate"));
+        colBookingNumber.setCellValueFactory(new PropertyValueFactory<Booking, String>("BookingNo"));
+        colTravelerCount.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("TravelerCount"));
+        colCustomerId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("CustomerId"));
+        colTripTypeId.setCellValueFactory(new PropertyValueFactory<Booking, String>("TripTypeId"));
+        colPackageId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("PackageId"));
 
-        tblBookings.setEditable(true); */
+        tblBookings.setEditable(true);
 
-        /*colBookingId.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
+        colBookingId.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
         colBookingDate .setCellFactory(TextFieldTableCell.<Booking, Timestamp> forTableColumn(new TimeStringConverter()));
-        colBookingDate.setCellFactory(TextFieldTableCell.forTableColumn());
         colBookingNumber.setCellFactory(TextFieldTableCell.forTableColumn());
-        colTravelerCount.setCellFactory(TextFieldTableCell.forTableColumn());
+        colTravelerCount.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
         colCustomerId.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
         colTripTypeId.setCellFactory(TextFieldTableCell.forTableColumn());
-        colPackageId.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter())); */
+        colPackageId.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
 
+
+
+        pkgIdColumn.setCellValueFactory(new PropertyValueFactory<Package, Integer>("PackageId"));
+        pkgNameColumn.setCellValueFactory(new PropertyValueFactory<Package, String>("PkgName"));
+        pkgStartColumn.setCellValueFactory(new PropertyValueFactory<Package, Timestamp>("PkgStartDate"));
+        pkgEndColumn.setCellValueFactory(new PropertyValueFactory<Package, Timestamp>("pkgEndDate"));
+        pkgDescColumn.setCellValueFactory(new PropertyValueFactory<Package, String>("PkgDesc"));
+        pkgPriceColumn.setCellValueFactory(new PropertyValueFactory<Package, BigDecimal>("PkgBasePrice"));
+        pkgCommColumn.setCellValueFactory(new PropertyValueFactory<Package, BigDecimal>("PkgAgencyCommission"));
+
+
+        tblPackages.setEditable(true);
+
+        pkgIdColumn.setCellFactory(TextFieldTableCell.<Package, Integer> forTableColumn(new IntegerStringConverter()));
+        pkgNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        pkgStartColumn.setCellFactory(TextFieldTableCell.<Package, Timestamp> forTableColumn(new TimeStringConverter()));
+        pkgEndColumn.setCellFactory(TextFieldTableCell.<Package, Timestamp> forTableColumn(new TimeStringConverter()));
+        pkgDescColumn.setCellFactory(TextFieldTableCell.forTableColumn());
+        pkgPriceColumn.setCellFactory(TextFieldTableCell.<Package, BigDecimal> forTableColumn(new BigDecimalStringConverter()));
+        pkgCommColumn.setCellFactory(TextFieldTableCell.<Package, BigDecimal> forTableColumn(new BigDecimalStringConverter()));
     }
     }

@@ -320,12 +320,12 @@
                                           <TableView fx:id="tblBookings" layoutX="233.0" layoutY="77.0" prefHeight="342.0" prefWidth="600.0" AnchorPane.bottomAnchor="0.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="0.0">
                                             <columns>
                                               <TableColumn fx:id="colBookingId" prefWidth="67.99997103214264" text="Booking ID" />
-                                              <TableColumn fx:id="colBookingDate" prefWidth="85.59990692138672" text="Booking Date" />
-                                                <TableColumn fx:id="colBookingNumber" prefWidth="108.79998779296875" text="Booking Number" />
-                                                <TableColumn fx:id="colTravelerCount" prefWidth="97.60003662109375" text="Traveler Count" />
-                                                <TableColumn fx:id="colCustomerId" prefWidth="84.79998779296875" text="Customer ID" />
-                                                <TableColumn fx:id="colTripTypeId" prefWidth="76.80007934570312" text=" Trip Type ID" />
-                                                <TableColumn fx:id="colPackageId" prefWidth="81.5999755859375" text="Package ID" />
+                                              <TableColumn fx:id="colBookingDate" onEditCommit="#updateBookingDate" prefWidth="85.59990692138672" text="Booking Date" />
+                                                <TableColumn fx:id="colBookingNumber" onEditCommit="#updateBookingNumber" prefWidth="108.79998779296875" text="Booking Number" />
+                                                <TableColumn fx:id="colTravelerCount" onEditCommit="#updateTravellerCount" prefWidth="97.60003662109375" text="Traveler Count" />
+                                                <TableColumn fx:id="colCustomerId" onEditCommit="#updateCustomerId" prefWidth="84.79998779296875" text="Customer ID" />
+                                                <TableColumn fx:id="colTripTypeId" onEditCommit="#updateTripTypeId" prefWidth="76.80007934570312" text=" Trip Type ID" />
+                                                <TableColumn fx:id="colPackageId" onEditCommit="#updatePackageId" prefWidth="81.5999755859375" text="Package ID" />
                                             </columns>
                                           </TableView>
                                        </children>
@@ -337,7 +337,7 @@
                                   <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="180.0" prefWidth="200.0" />
                                     <TableView fx:id="ctableview" layoutX="141.0" layoutY="79.0" prefHeight="370.0" prefWidth="700.0" AnchorPane.bottomAnchor="100.0" AnchorPane.leftAnchor="0.0" AnchorPane.rightAnchor="0.0" AnchorPane.topAnchor="70.0">
                                         <columns>
-                                            <TableColumn fx:id="customeridColumn" onEditCommit="#updateCustomerId" prefWidth="60.00003128051776" text="CustomerId" />
+                                            <TableColumn fx:id="customeridColumn" onEditCommit="#updateCustomerId" prefWidth="60.00003128051776" text="CustomerId" /> 
                                             <TableColumn fx:id="cfirstNameColumn" onEditCommit="#updateCustFirstName" prefWidth="95.19997787475586" text="CustFirstName" />
                                             <TableColumn fx:id="clastNameColumn" onEditCommit="#updateCustLastName" prefWidth="97.5999755859375" text="CustLastName" />
                                             <TableColumn fx:id="addressColumn" onEditCommit="#updateCustAddress" prefWidth="99.20001220703125" text="CustAddress" />
@@ -373,7 +373,7 @@
                                        <children>
                                           <TableView fx:id="tblPackages" layoutY="1.0" prefHeight="515.0" prefWidth="612.0">
                                             <columns>
-                                              <TableColumn fx:id="pkgIdColumn" prefWidth="68.80001908540726" text="PackageId" />
+                                              <TableColumn fx:id="pkgIdColumn" onEditCommit="#updatePackageId" prefWidth="68.80001908540726" text="PackageId" />
                                               <TableColumn fx:id="pkgNameColumn" minWidth="6.103515625E-5" prefWidth="87.19994735717773" text="PkgName" />
                                                 <TableColumn fx:id="pkgStartColumn" prefWidth="108.80006408691406" text="PkgStartDate" />
                                                 <TableColumn fx:id="pkgEndColumn" prefWidth="68.79998779296875" text="pkgEndDate" />

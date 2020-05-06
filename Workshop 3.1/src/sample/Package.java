@@ -10,7 +10,6 @@ public class Package{
    public Timestamp PkgEndDate;
    public String PkgDesc;
     public BigDecimal PkgBasePrice;
-   // public BigDecimal PackageCommission;
     public BigDecimal PkgAgencyCommission;
 
     public Package(Integer packageId, String packageName, Timestamp packageStart, Timestamp packageEnd, String packageDesc, BigDecimal packagePrice, BigDecimal packageCommission) {
