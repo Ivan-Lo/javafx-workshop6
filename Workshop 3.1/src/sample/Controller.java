@@ -1575,7 +1575,7 @@ public class Controller {
         colBookingId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("BookingId"));
         colBookingDate.setCellValueFactory(new PropertyValueFactory<Booking, Timestamp>("BookingDate"));
         colBookingNumber.setCellValueFactory(new PropertyValueFactory<Booking, String>("BookingNo"));
-        colTravelerCount.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("TravelerCount"));
+        //colTravelerCount.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("TravelerCount"));
         colCustomerId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("CustomerId"));
         colTripTypeId.setCellValueFactory(new PropertyValueFactory<Booking, String>("TripTypeId"));
         colPackageId.setCellValueFactory(new PropertyValueFactory<Booking, Integer>("PackageId"));
@@ -1583,9 +1583,9 @@ public class Controller {
         tblBookings.setEditable(true);
 
         colBookingId.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
-        colBookingDate .setCellFactory(TextFieldTableCell.<Booking, Timestamp> forTableColumn(new TimeStringConverter()));
+        //colBookingDate .setCellFactory(TextFieldTableCell.<Booking, Timestamp> forTableColumn(new TimeStringConverter()));
         colBookingNumber.setCellFactory(TextFieldTableCell.forTableColumn());
-        colTravelerCount.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
+        //colTravelerCount.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
         colCustomerId.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
         colTripTypeId.setCellFactory(TextFieldTableCell.forTableColumn());
         colPackageId.setCellFactory(TextFieldTableCell.<Booking, Integer> forTableColumn(new IntegerStringConverter()));
@@ -1605,8 +1605,8 @@ public class Controller {
 
         pkgIdColumn.setCellFactory(TextFieldTableCell.<Package, Integer> forTableColumn(new IntegerStringConverter()));
         pkgNameColumn.setCellFactory(TextFieldTableCell.forTableColumn());
-        pkgStartColumn.setCellFactory(TextFieldTableCell.<Package, Timestamp> forTableColumn(new TimeStringConverter()));
-        pkgEndColumn.setCellFactory(TextFieldTableCell.<Package, Timestamp> forTableColumn(new TimeStringConverter()));
+        //pkgStartColumn.setCellFactory(TextFieldTableCell.<Package, Timestamp> forTableColumn(new TimeStringConverter()));
+        //pkgEndColumn.setCellFactory(TextFieldTableCell.<Package, Timestamp> forTableColumn(new TimeStringConverter()));
         pkgDescColumn.setCellFactory(TextFieldTableCell.forTableColumn());
         pkgPriceColumn.setCellFactory(TextFieldTableCell.<Package, BigDecimal> forTableColumn(new BigDecimalStringConverter()));
         pkgCommColumn.setCellFactory(TextFieldTableCell.<Package, BigDecimal> forTableColumn(new BigDecimalStringConverter()));
