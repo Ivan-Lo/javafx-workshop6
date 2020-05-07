@@ -9,12 +9,14 @@ Licence URI: https://www.os-templates.com/template-terms
 <html lang="">
 <!-- To declare your language - read more here: https://www.w3.org/International/questions/qa-html-language-declarations -->
 <head>
-<title>Travel Experts Home</title>
+<title>Travel Experts Delete Customer</title>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no">
 <link href="C:\Users\519464\eclipse-workspace\Lab8\WebContent\layout\styles/layout.css" rel="stylesheet" type="text/css" media="all">
 </head>
-<body id="top">
+<body id="top" onload="loadAllCustomers();">
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row1">
   <header id="header" class="hoc clear"> 
@@ -34,14 +36,16 @@ Licence URI: https://www.os-templates.com/template-terms
   </header>
 </div>
 <!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
 <div class="wrapper row2">
   <nav id="mainav" class="hoc clear"> 
     <!-- ################################################################################################ -->
     <ul class="clear">
-      <li class="active"><a href="http://localhost:8080/Lab8-1/index.html">HOME</a></li>
+      <li ><a href="http://localhost:8080/Lab8-1/index.html">HOME</a></li>
       <li><a href="http://localhost:8080/Lab8-1/agents.html">AGENTS</a></li>
           <li><a href="http://localhost:8080/Lab8-1/bookings.html">BOOKINGS</a></li>
-<li><a class="drop" href="http://localhost:8080/Lab8-1/customers.html">CUSTOMERS</a>
+ <li class="active"><a class="drop" href="http://localhost:8080/Lab8-1/customers.html">CUSTOMERS</a>
         <ul>
           <li><a href="http://localhost:8080/Lab8-1/addcustomer.html">Add Customer</a></li>
           <li><a href="http://localhost:8080/Lab8-1/editcustomer.html">Edit Customer</a></li>
@@ -49,123 +53,138 @@ Licence URI: https://www.os-templates.com/template-terms
           <li><a href="http://localhost:8080/Lab8-1/deletecustomer.html">Delete Customer</a></li>      
         </ul>          <li><a href="http://localhost:8080/Lab8-1/packages.html">PACKAGES</a></li>
           <li><a href="http://localhost:8080/Lab8-1/products.html">PRODUCTS</a></li>
+      </li>
     </ul>
     <!-- ################################################################################################ -->
   </nav>
 </div>
 <!-- ################################################################################################ -->
-<div class="wrapper bgded overlay" style="background-image:url('C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo\backgrounds/01.jpg')">
-  <div id="pageintro" class="hoc clear"> 
-    <!-- ################################################################################################ -->
-    <article>
-      <div>
-        <p class="heading">Come Travel With Us</p>
-        <p></p>
-      </div>
-      <footer>
-        <ul class="nospace inline pushright">
-          <li><a class="btn inverse" href="#">Book Now</a></li>
-          <li><a class="btn" href="#">Get In Touch</a></li>
-        </ul>
-      </footer>
-    </article>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
+<div class="wrapper bgded overlay" style="background-image:url('C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/sky.png');">
+  <div id="breadcrumb" class="hoc clear"> 
     <!-- ################################################################################################ -->
   </div>
 </div>
+<!-- ################################################################################################ -->
+<!-- ################################################################################################ -->
 <!-- ################################################################################################ -->
 <div class="wrapper row3">
   <main class="hoc container clear"> 
     <!-- main body -->
     <!-- ################################################################################################ -->
-    <article class="group">
-      <div class="group btmspace-80">
-        <div class="one_quarter first">
-          <h6 class="heading">See our Getaways</h6>
-        </div>
-        <div class="three_quarter">
-          <p>Get ready for a COVID Blowout! we are going out of business and giving away free trips across the Atlantic. How do we achieve this you ask? By using the luggage racks both inner and under, we are able to socially distance and treat you right.</p>
-          <footer><a class="btn" href="#">Read More &raquo;</a></footer>
-        </div>
-      </div>
-      <figure>
-        <ul class="nospace group overview">
-          <li class="one_half"><a href="#"><img src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/china.jpg" alt=""></a></li>
-          <li class="one_half"><a href="#"><img src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/train.jpg" alt=""></a></li>
-          <li class="one_half"><a href="#"><img src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/hicker1.jpg" alt=""></a></li>
-          <li class="one_half"><a href="#"><img src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/hicker2.jpg" alt=""></a></li>
-          <li class="one_half"><a href="#"><img src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/bike.jpg" alt=""></a></li>
-          <li class="one_half"><a href="#"><img src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/grass.jpg" alt=""></a></li>
+    <div class="content"> 
+      <!-- ################################################################################################ -->
+     <h2>Delete A Customer</h2>
+	<select id="customers" onchange="loadCustomerForm(this.value)">
+	<option value="">Select a Customer from the list</option>
+	</select><br />
+	<div id="myFields">
+		Customer Id:<input type="text" id="customerId" enabled="false" /><br />
+		First Name:<input type="text" id="custFirstName" /><br />
+		Last Name:<input type="text" id="custLastName" /><br />
+		Address:<input type="text" id="custAddress" /><br />
+		City:<input type="text" id="custCity" /><br />
+		Prov:<input type="text" id="custProv" /><br />
+		Postal:<input type="text" id="custPostal" /><br />
+		Country:<input type="text" id="custCountry" /><br />
+		Home Phone:<input type="text" id="custHomePhone" /><br />
+		Bus Phone:<input type="text" id="custBusPhone" /><br />
+		Email:<input type="text" id="custEmail" /><br />
+		Agent Id:<input type="text" id="agentId" /><br />
+	</div>
+	<button onclick="deleteCustomer(document.getElementById('customerId').value)">Delete</button>
+	
+	<div id="message"></div>
+	<div id="error"></div>
+      
+	
+      
+      
+  <br />
+  <br />
+  <br />
+  
+      <div id="comments">
+        <h2>Comments</h2>
+        <ul>
+          <li>
+            <article>
+              <header>
+                <figure class="avatar"><img src="../images/demo/avatar.png" alt=""></figure>
+                <address>
+                By <a href="#">Phil</a>
+                </address>
+                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+              </header>
+              <div class="comcont">
+                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article>
+              <header>
+                <figure class="avatar"><img src="../images/demo/avatar.png" alt=""></figure>
+                <address>
+                By <a href="#">Sheryl</a>
+                </address>
+                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+              </header>
+              <div class="comcont">
+                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+              </div>
+            </article>
+          </li>
+          <li>
+            <article>
+              <header>
+                <figure class="avatar"><img src="../images/demo/avatar.png" alt=""></figure>
+                <address>
+                By <a href="#">Frank</a>
+                </address>
+                <time datetime="2045-04-06T08:15+00:00">Friday, 6<sup>th</sup> April 2045 @08:15:00</time>
+              </header>
+              <div class="comcont">
+                <p>This is an example of a comment made on a post. You can either edit the comment, delete the comment or reply to the comment. Use this as a place to respond to the post or to share what you are thinking.</p>
+              </div>
+            </article>
+          </li>
         </ul>
-      </figure>
-    </article>
+        <h2>Write A Comment</h2>
+        <form action="#" method="post">
+          <div class="one_third first">
+            <label for="name">Name <span>*</span></label>
+            <input type="text" name="name" id="name" value="" size="22" required>
+          </div>
+          <div class="one_third">
+            <label for="email">Mail <span>*</span></label>
+            <input type="email" name="email" id="email" value="" size="22" required>
+          </div>
+          <div class="one_third">
+            <label for="url">Website</label>
+            <input type="url" name="url" id="url" value="" size="22">
+          </div>
+          <div class="block clear">
+            <label for="comment">Your Comment</label>
+            <textarea name="comment" id="comment" cols="25" rows="10"></textarea>
+          </div>
+          <div>
+            <input type="submit" name="submit" value="Submit Form">
+            &nbsp;
+            <input type="reset" name="reset" value="Reset Form">
+          </div>
+        </form>
+      </div>
+      <!-- ################################################################################################ -->
+    </div>
     <!-- ################################################################################################ -->
     <!-- / main body -->
     <div class="clear"></div>
   </main>
 </div>
 <!-- ################################################################################################ -->
-<div class="wrapper bgded overlay" style="background-image:url('C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo\backgrounds/02.png');">
-  <article class="hoc container clear center"> 
-    <!-- ################################################################################################ -->
-    <div class="sectiontitle" style="margin-bottom:30px;">
-      <h6 class="heading">Dive Into Our Daily Deal!</h6>
-      <p>Because of Covid, each day we are giving away a free trip to Madagascar!</p>
-    </div>
-    <p><a class="btn medium" href="#">Read More &raquo;</a></p>
-    <!-- ################################################################################################ -->
-  </article>
-</div>
 <!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<!-- ################################################################################################ -->
-<div class="wrapper row3">
-  <section class="hoc container clear"> 
-    <!-- ################################################################################################ -->
-    <div class="sectiontitle">
-      <h6 class="heading">Meet Our Agents</h6>
-      <p>Each associate is a qualified traveling technician and is eager to serve YOU!</p>
-    </div>
-    <div class="group">
-      <article class="one_third first"><a href="#"><img class="btmspace-30" src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/Te_lawrence.jpg" alt=""></a>
-        <h6 class="nospace heading">Lawrence of Arabia</h6>
-        <ul class="nospace meta">
-          <li><i class="fa fa-user"></i> <a href="#">Tour Guide</a></li>
-          <li><i class="fa fa-tag"></i> <a href="#">Profile</a></li>
-        </ul>
-        <p>Master with a sword and knows when to board!</p>
-        <footer class="nospace"><a class="btn" href="#">Read More</a></footer>
-      </article>
-      <article class="one_third"><a href="#"><img class="btmspace-30" src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/fallon.jpg" alt=""></a>
-        <h6 class="nospace heading">Jimmy Fallon</h6>
-        <ul class="nospace meta">
-          <li><i class="fa fa-user"></i> <a href="#">Entertainer</a></li>
-          <li><i class="fa fa-tag"></i> <a href="#">Profile</a></li>
-        </ul>
-        <p>The Tonight Show With Jimmy Fallon is partnering to do a special with Travel Experts!</p>
-        <footer class="nospace"><a class="btn" href="#">Read More</a></footer>
-      </article>
-      <article class="one_third"><a href="#"><img class="btmspace-30" src="C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo/falcon.jpg" alt=""></a>
-        <h6 class="nospace heading">Mr Falcon</h6>
-        <ul class="nospace meta">
-          <li><i class="fa fa-user"></i> <a href="#">Cruise Captain</a></li>
-          <li><i class="fa fa-tag"></i> <a href="#">Profile</a></li>
-        </ul>
-        <p>Sails the Seven Seas and is Covid Free</p>
-        <footer class="nospace"><a class="btn" href="#">Read More</a></footer>
-      </article>
-    </div>
-    <!-- ################################################################################################ -->
-  </section>
-</div>
-<!-- ################################################################################################ -->
-<div class="wrapper bgded overlay light" style="background-image:url('C:\Users\519464\eclipse-workspace\Lab8\WebContent\images\demo\backgrounds/03.png');">
-  <article class="hoc cta clear"> 
-    <!-- ################################################################################################ -->
-    <h6 class="three_quarter first">Leave us a review!</h6>
-    <footer class="one_quarter"><a class="btn" href="#">Leave a Review &raquo;</a></footer>
-    <!-- ################################################################################################ -->
-  </article>
-</div>
 <!-- ################################################################################################ -->
 <div class="wrapper row4">
   <footer id="footer" class="hoc clear"> 
@@ -237,5 +256,9 @@ Licence URI: https://www.os-templates.com/template-terms
 <script src="layout/scripts/jquery.min.js"></script>
 <script src="layout/scripts/jquery.backtotop.js"></script>
 <script src="layout/scripts/jquery.mobilemenu.js"></script>
+<script src="ajax.js"></script>
+<script src="jquery.js"></script>
+
+
 </body>
 </html>
