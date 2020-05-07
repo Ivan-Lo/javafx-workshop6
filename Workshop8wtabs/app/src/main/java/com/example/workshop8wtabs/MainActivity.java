@@ -41,8 +41,7 @@ public class MainActivity extends AppCompatActivity {
         tab4 = (TabItem) findViewById(R.id.PackageTab);
         viewPager = findViewById(R.id.viewpager);
 
-        lvCustomers = findViewById(R.id.lvCustomers);
-        loadCustomers();
+
 
         pageradapter = new PageAdapter(getSupportFragmentManager(), tabLayout.getTabCount());
         viewPager.setAdapter(pageradapter);
@@ -53,6 +52,8 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
                 if (tab.getPosition() == 0) {
                     pageradapter.notifyDataSetChanged();
+                    lvCustomers = findViewById(R.id.lvCustomers);
+                    loadCustomers();
                 } else if (tab.getPosition() == 1) {
                     pageradapter.notifyDataSetChanged();
                 } else if (tab.getPosition() == 2) {
