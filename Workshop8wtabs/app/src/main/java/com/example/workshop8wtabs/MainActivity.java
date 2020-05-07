@@ -235,7 +235,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             StringBuffer buffer = new StringBuffer();
             try {
-                URL url = new URL("http://192.168.0.18:8080/Lab8-1/rs/pacakge/getallpackages");
+                URL url = new URL("http://192.168.0.18:8080/Lab8-1/rs/package/getallpackages");
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 String json;
                 while ((json = br.readLine()) != null) {
