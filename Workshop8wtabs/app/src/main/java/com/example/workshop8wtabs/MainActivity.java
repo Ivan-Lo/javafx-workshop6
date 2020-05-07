@@ -56,11 +56,12 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
                 if (tab.getPosition() == 0) {
                     pageradapter.notifyDataSetChanged();
-                    lvCustomers = findViewById(R.id.lvCustomers);
-                    loadCustomers();
+
                 } else if (tab.getPosition() == 1) {
                     pageradapter.notifyDataSetChanged();
-
+                    lvCustomers = findViewById(R.id.lvCustomers);
+                    loadCustomers();
+                    
                 } else if (tab.getPosition() == 2) {
                     pageradapter.notifyDataSetChanged();
                     lvAgents = findViewById(R.id.lvAgents);
