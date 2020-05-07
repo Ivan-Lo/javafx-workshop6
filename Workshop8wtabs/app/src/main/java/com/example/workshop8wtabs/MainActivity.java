@@ -56,22 +56,25 @@ public class MainActivity extends AppCompatActivity {
                 viewPager.setCurrentItem(tab.getPosition());
                 if (tab.getPosition() == 0) {
                     pageradapter.notifyDataSetChanged();
+
+                } else if (tab.getPosition() == 1) {
+                    pageradapter.notifyDataSetChanged();
                     lvCustomers = findViewById(R.id.lvCustomers);
                     loadCustomers();
-                } else if (tab.getPosition() == 1) {
+                    
+                } else if (tab.getPosition() == 2) {
                     pageradapter.notifyDataSetChanged();
                     lvAgents = findViewById(R.id.lvAgents);
                     loadAgents();
-                } else if (tab.getPosition() == 2) {
+                } else if (tab.getPosition() == 3) {
                     pageradapter.notifyDataSetChanged();
                     lvBookings = findViewById(R.id.lvBookings);
                     loadBookings();
-                } else if (tab.getPosition() == 3) {
+
+                } else if (tab.getPosition() == 4) {
                     pageradapter.notifyDataSetChanged();
                     lvPackages = findViewById(R.id.lvPackages);
                     loadPackages();
-                } else if (tab.getPosition() == 4) {
-                    pageradapter.notifyDataSetChanged();
                 }
             }
 
