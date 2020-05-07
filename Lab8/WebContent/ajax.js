@@ -68,18 +68,18 @@ function loadCustomer(customerId) {
 			var customer = data;
 			var customerDiv = document.getElementById("customerDiv");
 	
-			customerDiv.innerHTML = "customerId: " + customer.customerId + "<br />"
-					+ "custFirstName: " + customer.custFirstName + "<br />"
-					+ "custLastName: " + customer.custLastName + "<br />"
-					+ "custAddress: " + customer.custAddress + "<br />"
-					+ "custCity: " + customer.custCity + "<br />"
-					+ "custProv: " + customer.custProv + "<br />"
-					+ "custPostal: " + customer.custPostal + "<br />"
-					+ "custCountry: " + customer.custCountry + "<br />"
-					+ "custHomePhone: " + customer.custHomePhone + "<br />"
-					+ "custBusPhone: " + customer.custBusPhone + "<br />"
-					+ "custEmail: " + customer.custEmail + "<br />"
-					+ "agentId: " + customer.agentId + "<br />"
+			customerDiv.innerHTML = "Customer ID: " + customer.customerId + "<br />"
+					+ "First Name " + customer.custFirstName + "<br />"
+					+ "Last Name " + customer.custLastName + "<br />"
+					+ "Address " + customer.custAddress + "<br />"
+					+ "City: " + customer.custCity + "<br />"
+					+ "Province: " + customer.custProv + "<br />"
+					+ "Postal Code: " + customer.custPostal + "<br />"
+					+ "Country: " + customer.custCountry + "<br />"
+					+ "Home Phone: " + customer.custHomePhone + "<br />"
+					+ "Business Phone: " + customer.custBusPhone + "<br />"
+					+ "Email: " + customer.custEmail + "<br />"
+					+ "Agent ID: " + customer.agentId + "<br />"
 		}, "json");
 }
 
