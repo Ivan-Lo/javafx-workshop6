@@ -10,10 +10,10 @@ import javax.ws.rs.PathParam;
 import java.lang.reflect.Type;
 import java.util.List;
 
-import javax.management.Query;
 import javax.persistence.EntityManager;
 import javax.persistence.EntityManagerFactory;
 import javax.persistence.Persistence;
+import javax.persistence.Query;
 import javax.ws.rs.Consumes;
 import javax.ws.rs.DELETE;
 import javax.ws.rs.Produces;
@@ -40,7 +40,7 @@ public class BookingRestService {
 			= Persistence.createEntityManagerFactory("Lab8");
 		EntityManager em = factory.createEntityManager();
 		Query query = (Query) em.createQuery("select a from Booking a");
-		List<Agent> list = ((javax.persistence.Query) query).getResultList();
+		List<Booking> list = query.getResultList();
 		
 		Gson gson = new Gson();
 		//Type type = new TypeToken<List<Agent>>() {}.getType();

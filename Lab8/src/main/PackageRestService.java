@@ -30,7 +30,7 @@ import model.Package;
 
 
 
-@Path("/<add your restful service class name here>")
+@Path("/package")
 public class PackageRestService {
 	
 	@GET
