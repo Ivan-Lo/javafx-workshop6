@@ -102,7 +102,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             StringBuffer buffer = new StringBuffer();
             try {
-                URL url = new URL("http://192.168.1.131:8080/Lab8-1/rs/customer/getallcustomers");
+                URL url = new URL("http://192.168.0.18:8080/Lab8-1/rs/customer/getallcustomers");
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 String json;
                 while ((json = br.readLine()) != null) {
@@ -150,7 +150,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             StringBuffer buffer = new StringBuffer();
             try {
-                URL url = new URL("http://192.168.1.131:8080/Lab8-1/rs/agent/getallagents");
+                URL url = new URL("http://192.168.0.18:8080/Lab8-1/rs/agent/getallagents");
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 String json;
                 while ((json = br.readLine()) != null) {
@@ -194,7 +194,7 @@ public class MainActivity extends AppCompatActivity {
         protected String doInBackground(Void... voids) {
             StringBuffer buffer = new StringBuffer();
             try {
-                URL url = new URL("http://192.168.1.131:8080/Lab8-1/rs/booking/getallbookings");
+                URL url = new URL("http://192.168.0.18:8080/Lab8-1/rs/booking/getallbookings");
                 BufferedReader br = new BufferedReader(new InputStreamReader(url.openStream()));
                 String json;
                 while ((json = br.readLine()) != null) {
